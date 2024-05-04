@@ -1337,7 +1337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxTime: 60
   GameStartButton: {fileID: 949573696}
-  RemainingTimeText: {fileID: 0}
+  RemainingTimeText: {fileID: 756473572}
 --- !u!4 &419082914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6138582721675878944, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -2123,7 +2123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &756473571
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3794,7 +3794,7 @@ GameObject:
   - component: {fileID: 1619360631}
   - component: {fileID: 1619360630}
   m_Layer: 0
-  m_Name: Background
+  m_Name: Tile Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
