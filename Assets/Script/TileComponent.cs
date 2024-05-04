@@ -3,27 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileComponent : MonoBehaviour
+public class TileComponent : MonoBehaviour, IComparable
 {
-    private bool isPlayerOn;
-    private Vector2 coordinate;
-
-    void Start()
-    {
-        coordinate.x = transform.position.x;
-        coordinate.y = transform.position.y;
-    }
-
-    public bool IsPlayerOn
-    {
-        get => isPlayerOn;
-        set => isPlayerOn = value;
-    }
     
+    public Vector2 coordinate;
+    public CharacterComponent gameObjectOnTile;
+    public bool isPlayerOn;
 
-    public Vector2 Coordinate
+    public int idx;
+    public int CompareTo(object obj)
     {
-        get => coordinate;
-        set => coordinate = value;
+        if (transform.position.y > (obj as TileComponent).transform.position.y)
+            return -1;
+        else if (transform.position.y == (obj as TileComponent).transform.position.y
+        && transform.position.x < (obj as TileComponent).transform.position.x)
+            return -1;
+        else
+            return 1;
+    }
+
+    public CharacterComponent GetCharacterOnTile()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, Mathf.Infinity, LayerMask.GetMask("Character"));
+        return hit.collider.GetComponent<CharacterComponent>();
+        
     }
 }
