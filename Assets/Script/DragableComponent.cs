@@ -25,7 +25,7 @@ public class DragableComponent : MonoBehaviour
     private void OnMouseUp()
     {
         Vector3 rayStartPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D[] hit = Physics2D.RaycastAll(rayStartPos, transform.forward, Mathf.Infinity, LayerMask.GetMask("Tile"));
+        RaycastHit2D[] hit = Physics2D.RaycastAll(rayStartPos, transform.forward, 20.0f, LayerMask.GetMask("Tile"));
         if (hit.Length > 0)
         {
             Vector3 newPos = new Vector3(hit[0].transform.position.x, hit[0].transform.position.y,StartPos.z);
