@@ -5,13 +5,10 @@ using UnityEngine;
 
 public class TileComponent : MonoBehaviour, IComparable
 {
-    
-    public Vector2 coordinate;
-    public CharacterComponent gameObjectOnTile;
-    public bool isPlayerOn;
-
-    public int idx;
-    public int CompareTo(object obj)
+    public int xCoordinate;
+    public int yCoordinate;
+   
+   public int CompareTo(object obj)
     {
         if (transform.position.y > (obj as TileComponent).transform.position.y)
             return -1;
@@ -24,7 +21,10 @@ public class TileComponent : MonoBehaviour, IComparable
 
     public CharacterComponent GetCharacterOnTile()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, Mathf.Infinity, LayerMask.GetMask("Character"));
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.back, Mathf.Infinity, LayerMask.GetMask("Character"));
+
+        if (!hit)
+            return null;
         return hit.collider.GetComponent<CharacterComponent>();
         
     }

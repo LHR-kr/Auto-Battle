@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button GameStartButton;
     [SerializeField] private TextMeshProUGUI RemainingTimeText;
     private float RemainingTime;
-    
+    private CharacterComponent[] characters;
     private static GameManager instance = null;
 
     void Awake()
@@ -26,27 +28,32 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        
+    }
+
+    private void Start()
+    {
+        characters = FindObjectsOfType<CharacterComponent>();
     }
 
     public static GameManager Instance
     {
         get
         {
-            if (instance == null)
-            {
-                return null;
-            }
             return instance;
         }
     }
 
     public void StartGame()
     {
+        // Init UI
         RemainingTime = MaxTime;
         StartCoroutine(SetGameTimer());
 
         RemainingTimeText.gameObject.SetActive(true);
         GameStartButton.gameObject.SetActive(false);
+        
+        //UI
     }
 
     public void PauseGame()
@@ -82,6 +89,12 @@ public class GameManager : MonoBehaviour
             RemainingTime -= 1.0f;
             RemainingTimeText.SetText(RemainingTime.ToString());
             yield return new WaitForSeconds(1.0f);
+
+            foreach (CharacterComponent character in characters)
+            {
+                character.Act();
+            }
+            
         }
         EndGame();
         

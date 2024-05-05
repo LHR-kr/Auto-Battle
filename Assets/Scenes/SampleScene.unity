@@ -170,11 +170,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2646806767529052941, guid: d578338f74346394daaaa466fd92060d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.6537
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2646806767529052941, guid: d578338f74346394daaaa466fd92060d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.14041
+      value: -0.13
       objectReference: {fileID: 0}
     - target: {fileID: 2646806767529052941, guid: d578338f74346394daaaa466fd92060d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -256,10 +256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!4 &84118191 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6138582721675878944, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -508,10 +506,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &134521357 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -1059,10 +1055,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &287598354 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -1080,10 +1074,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!4 &305469050 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6138582721675878944, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -1193,10 +1185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!4 &336473943 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6138582721675878944, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -1646,10 +1636,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &477579851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2135,10 +2123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &599847702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2253,10 +2239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &705058629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2625,10 +2609,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!4 &801681231 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6138582721675878944, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -2733,10 +2715,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &839464072
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3018,11 +2998,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3207838733692233360, guid: 458ee67b3e5640440858a4b86caefae5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.5973
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 3207838733692233360, guid: 458ee67b3e5640440858a4b86caefae5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.097927
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 3207838733692233360, guid: 458ee67b3e5640440858a4b86caefae5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3082,10 +3062,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &909154283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3398,10 +3376,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &1097224322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3497,10 +3473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &1108501838 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -3523,10 +3497,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &1118087180
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3616,10 +3588,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!4 &1173286380 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6138582721675878944, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -3637,10 +3607,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &1190699780 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -3658,10 +3626,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!4 &1196787576 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6138582721675878944, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -3684,10 +3650,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &1206021313 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -3705,10 +3669,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!4 &1223673406 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6138582721675878944, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -3808,10 +3770,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!4 &1265670874 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6138582721675878944, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -3920,10 +3880,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &1327068830 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -3941,10 +3899,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!4 &1330384945 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6138582721675878944, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -3962,10 +3918,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!4 &1333489008 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6138582721675878944, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -4290,10 +4244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &1458124733 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -4311,10 +4263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &1462265236 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -4332,10 +4282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &1462791282 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -4358,10 +4306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &1478889398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4456,10 +4402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &1500356182 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -4477,10 +4421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!4 &1533146276 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6138582721675878944, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -4498,10 +4440,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &1542506858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4591,10 +4531,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &1619360629
 GameObject:
   m_ObjectHideFlags: 0
@@ -4903,10 +4841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &1675845321 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -4924,10 +4860,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &1677554965 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -4945,10 +4879,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &1690944505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5038,10 +4970,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!4 &1694360296 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6138582721675878944, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -5059,10 +4989,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &1707269029 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -5080,10 +5008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &1721472783 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -5101,10 +5027,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &1723659493 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -5122,10 +5046,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &1732619845 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -5143,10 +5065,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!4 &1737692848 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6138582721675878944, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -5164,10 +5084,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &1750342189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5329,10 +5247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &1780545738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5494,10 +5410,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &1889736566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5587,10 +5501,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &1946680090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5680,10 +5592,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &1991711370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5710,11 +5620,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3672870249041172828, guid: a1c79758a40873f4fabeca58a9b5998f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.8299
+      value: 2.79
       objectReference: {fileID: 0}
     - target: {fileID: 3672870249041172828, guid: a1c79758a40873f4fabeca58a9b5998f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.15741
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 3672870249041172828, guid: a1c79758a40873f4fabeca58a9b5998f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5926,10 +5836,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &2023072263 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -5947,10 +5855,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!4 &2054561378 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6138582721675878944, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -5968,10 +5874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &2059717775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6195,10 +6099,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1 &2093840519 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3072018148716962583, guid: c22d1bc12b2a06c44b20115063686508, type: 3}
@@ -6216,10 +6118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa22c538cfe533749832c16922a96989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinate: {x: 0, y: 0}
-  gameObjectOnTile: {fileID: 0}
-  isPlayerOn: 0
-  idx: 0
+  xCoordinate: 0
+  yCoordinate: 0
 --- !u!1001 &2093874564
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -35,7 +35,8 @@ public class TileManager : MonoBehaviour
             for (int c = 0; c < col; c++)
             {
                 tiles[r,c] = arrTiles[r * col + c];
-                arrTiles[r * col + c].idx = r * col + c;
+                tiles[r,c].yCoordinate = r;
+                tiles[r,c].xCoordinate = c;
             }
         }
     }
@@ -47,4 +48,24 @@ public class TileManager : MonoBehaviour
             return instance;
         }
     }
+
+
+    public TileComponent[,] Tiles
+    {
+        get
+        {
+            return tiles;
+        }
+    }
+
+    public int Row
+    {
+        get { return row; }
+    }
+
+    public int Col
+    {
+        get { return col; }
+    }
+    
 }

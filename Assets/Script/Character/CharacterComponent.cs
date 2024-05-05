@@ -12,6 +12,7 @@ public enum ETEAM
 public abstract class CharacterComponent : MonoBehaviour
 {
     protected float HP;
+    [SerializeField] protected float attackDamage;
     [SerializeField] protected ETEAM team;
     [SerializeField] protected float MaxHP;
     [SerializeField] protected Animator animator;
@@ -32,7 +33,7 @@ public abstract class CharacterComponent : MonoBehaviour
     
     public void Act()
     {
-        
+        Attack();
     }
 
     private void Move()
@@ -42,16 +43,14 @@ public abstract class CharacterComponent : MonoBehaviour
 
     public void TakeDamage(float Damage)
     {
-        
+        HP -= Damage;
+        Debug.Log(HP);
     }
 
-    protected Vector2 GetTileCoordinate()
+    protected TileComponent GetTileUnderCharacter()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, 20.0f, LayerMask.GetMask("Tile"));
-
-        TileComponent tile = hit.collider.GetComponent<TileComponent>();
-        return tile.coordinate;
-        
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.forward, Mathf.Infinity, LayerMask.GetMask("Tile"));
+        return hit.collider.GetComponent<TileComponent>();
     }
     
 }
