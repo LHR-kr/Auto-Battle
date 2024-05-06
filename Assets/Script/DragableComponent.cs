@@ -4,26 +4,32 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class DragableComponent : MonoBehaviour
+public class DragableComponent : MonoBehaviour, IGameStartEventListener
 {
     private Vector3 StartPos;
     private Vector3 PrevPos;
+
+    private bool isDragable;
     void Start()
     {
         StartPos = transform.position;
+        isDragable = true;
     }
 
     private void OnMouseDrag()
     {
+        if (!isDragable) return;
         transform.position = GetTouchPosition();
     }
 
     private void OnMouseDown()
     {
+        if (!isDragable) return;
         PrevPos = transform.position;
     }
     private void OnMouseUp()
     {
+        if (!isDragable) return;
         Vector3 rayStartPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
         // 마우스 클릭 뗐을 때, 마우스 커서 아래에 자기 자신이 아닌 다른 캐릭터가 있다면 드래그 드랍 안 되도록 한다.
@@ -58,4 +64,9 @@ public class DragableComponent : MonoBehaviour
 
         return mousePos; 
     }
+    public void HandleGameStartEvent()
+    {
+        isDragable = false;
+    }
+
 }
