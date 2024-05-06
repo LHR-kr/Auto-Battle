@@ -53,11 +53,12 @@ public class GameManager : MonoBehaviour
         RemainingTimeText.gameObject.SetActive(true);
         GameStartButton.gameObject.SetActive(false);
         
-        // Init Character
+        // Init game Object
         foreach(CharacterComponent character in characters)
         {
             character.InitCharacter();
         }
+        
     }
 
     public void PauseGame()
@@ -96,6 +97,8 @@ public class GameManager : MonoBehaviour
 
             foreach (CharacterComponent character in characters)
             {
+                if(character.IsDead)
+                    continue;
                 character.Act();
             }
             
@@ -103,5 +106,14 @@ public class GameManager : MonoBehaviour
         EndGame();
         
     }
+
+    public CharacterComponent[] Characters
+    {
+        get
+        {
+            return characters;
+        }
+    }
+    
     
 }

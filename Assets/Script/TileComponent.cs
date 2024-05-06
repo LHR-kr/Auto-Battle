@@ -7,7 +7,7 @@ public class TileComponent : MonoBehaviour, IComparable
 {
     public int xCoordinate;
     public int yCoordinate;
-   
+    public bool isValidTile = true;
    public int CompareTo(object obj)
     {
         if (transform.position.y > (obj as TileComponent).transform.position.y)
@@ -27,5 +27,10 @@ public class TileComponent : MonoBehaviour, IComparable
             return null;
         return hit.collider.GetComponent<CharacterComponent>();
         
+    }
+
+    public void InitTile()
+    {
+        isValidTile = true;
     }
 }

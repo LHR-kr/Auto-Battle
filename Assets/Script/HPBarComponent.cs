@@ -17,7 +17,6 @@ public class HPBarComponent : MonoBehaviour
     {
         if (character)
         {
-            Debug.Log(character.HP);
             this.GetComponent<Image>().fillAmount = (character.HP / character.MaxHP);
         }
     }
