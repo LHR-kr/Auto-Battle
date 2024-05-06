@@ -28,6 +28,7 @@ public class KnightComponent : CharacterComponent
             if (team == character.Team)
                 continue;
             
+            animator.SetTrigger("Attack");
             // 데미지 
             character.TakeDamage(attackDamage);
             // 한 놈만 때림.

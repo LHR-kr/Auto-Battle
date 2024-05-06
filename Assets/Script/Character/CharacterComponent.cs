@@ -1,6 +1,7 @@
 using System;using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
 public enum ETEAM
@@ -11,12 +12,29 @@ public enum ETEAM
 
 public abstract class CharacterComponent : MonoBehaviour
 {
-    protected float HP;
+    protected float hp;
     [SerializeField] protected float attackDamage;
-    [SerializeField] protected ETEAM team;
-    [SerializeField] protected float MaxHP;
-    [SerializeField] protected Animator animator;
+    [SerializeField] protected ETEAM team; 
+    [SerializeField] protected float maxHP;
+    protected Animator animator;
     abstract protected void Attack();
+
+    public float HP
+    {
+        get
+        {
+            return hp;
+        }
+    }
+
+    public float MaxHP
+    {
+        get
+        {
+            return maxHP;
+        }
+    }
+    
     public ETEAM Team
     {
         get
@@ -25,9 +43,15 @@ public abstract class CharacterComponent : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        hp = maxHP;
+    }
+
     public void InitCharacter()
     {
-        HP = MaxHP;
+        hp = maxHP;
     }
     
     
@@ -43,8 +67,8 @@ public abstract class CharacterComponent : MonoBehaviour
 
     public void TakeDamage(float Damage)
     {
-        HP -= Damage;
-        Debug.Log(HP);
+        hp -= Damage;
+        Debug.Log(hp);
     }
 
     protected TileComponent GetTileUnderCharacter()

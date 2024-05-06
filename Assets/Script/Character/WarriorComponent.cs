@@ -28,6 +28,7 @@ public class WarriorComponent : CharacterComponent
             if (team == character.Team)
                 continue;
             
+            animator.SetTrigger("Attack");
             // 데미지 
             character.TakeDamage(attackDamage);
         }

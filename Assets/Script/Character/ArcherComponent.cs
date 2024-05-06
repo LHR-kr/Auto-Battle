@@ -34,15 +34,13 @@ public class ArcherComponent : CharacterComponent
                     continue;
                 if (team == character.Team)
                     continue;
-            
+                
+                animator.SetTrigger("Attack");
                 // 투사체 발사
 
                 Vector3 dir = character.transform.position - transform.position;
                 ArrowComponent arrow = Instantiate(arrowPrefab, transform.position,
                     Quaternion.FromToRotation(Vector3.right, dir)).GetComponent<ArrowComponent>();
-                
- 
-
                 arrow.AttackDamage = attackDamage;
                 arrow.Owner = this.gameObject;
                 return;

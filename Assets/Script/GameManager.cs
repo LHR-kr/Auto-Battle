@@ -53,7 +53,11 @@ public class GameManager : MonoBehaviour
         RemainingTimeText.gameObject.SetActive(true);
         GameStartButton.gameObject.SetActive(false);
         
-        //UI
+        // Init Character
+        foreach(CharacterComponent character in characters)
+        {
+            character.InitCharacter();
+        }
     }
 
     public void PauseGame()
