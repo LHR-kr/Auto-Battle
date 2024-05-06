@@ -19,8 +19,11 @@ public class GameManager : MonoBehaviour
     public delegate void GameStartDel();
 
     public delegate void GameTickDel();
+    public delegate void GameEndDel();
+    
     public static event GameStartDel SendGameStartEvent;
     public static event GameTickDel SendGameTickEvent;
+    public static event GameEndDel SendGameEndEvent;
 
     private Coroutine GameTimer;
 
@@ -91,7 +94,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        Debug.Log("end game");
+        SendGameEndEvent();
     }
     
 
