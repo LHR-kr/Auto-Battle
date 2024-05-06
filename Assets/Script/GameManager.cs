@@ -9,13 +9,16 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private float MaxTime;
-
     [SerializeField] private Button GameStartButton;
     [SerializeField] private TextMeshProUGUI RemainingTimeText;
     private float RemainingTime;
     private CharacterComponent[] characters;
     private static GameManager instance = null;
 
+    public delegate void GameStartDel();
+
+    public event GameStartDel SendGameStartEvent;
+    
     void Awake()
     {
         if (null == instance)
@@ -40,7 +43,10 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            return instance;
+            if (instance == null)
+                return null;
+            else 
+                return instance;
         }
     }
 
@@ -53,12 +59,8 @@ public class GameManager : MonoBehaviour
         RemainingTimeText.gameObject.SetActive(true);
         GameStartButton.gameObject.SetActive(false);
         
-        // Init game Object
-        foreach(CharacterComponent character in characters)
-        {
-            character.InitCharacter();
-        }
-        
+        // Send Game Start Event
+        SendGameStartEvent();
     }
 
 

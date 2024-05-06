@@ -11,7 +11,7 @@ public enum ETEAM
 }
 
 
-public abstract class CharacterComponent : MonoBehaviour
+public abstract class CharacterComponent : MonoBehaviour, IGameManagerEventListener
 {
     protected float hp;
     [SerializeField] protected float attackDamage;
@@ -21,6 +21,8 @@ public abstract class CharacterComponent : MonoBehaviour
 
    
     protected abstract List<CharacterComponent> GetAttackTarget();
+    
+    
     public float HP
     {
         get
@@ -47,6 +49,7 @@ public abstract class CharacterComponent : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.SendGameStartEvent += HandleGameStartEvent;
         animator = GetComponent<Animator>();
         hp = maxHP;
     }
@@ -81,8 +84,10 @@ public abstract class CharacterComponent : MonoBehaviour
     }
     private void Move()
     {
+        //게임 보드가 가로로 더 넓으니, 가로 방향으로 우선 이동할 수 있도록 순서 배치
         int[] moveX = { -1, 1, 0, 0 };
         int[] moveY = { 0, 0, 1, -1 };
+        
         //가장 가까운 적 찾는다.
         CharacterComponent movetarget = null;
         foreach (CharacterComponent character in GameManager.Instance.Characters)
@@ -184,5 +189,10 @@ public abstract class CharacterComponent : MonoBehaviour
             yield return null;
         }
         animator.SetBool("Move", false);
+    }
+
+    public void HandleGameStartEvent()
+    {
+        hp = maxHP;
     }
 }
