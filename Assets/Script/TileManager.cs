@@ -9,7 +9,7 @@ public class TileManager : MonoBehaviour
     private static TileManager instance = null;
     private int row = 5;
     private int col = 10;
-    private TileComponent[,] tiles; //비순차적 접근이 필요하므로 List 대신 배열 사용
+    private TileComponent[,] tiles; //비순차적, 임의 접근이 필요하므로 List 대신 배열 사용
     
     private void Awake()
     {

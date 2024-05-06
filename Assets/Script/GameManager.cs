@@ -61,25 +61,14 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void PauseGame()
-    {
 
-    }
-
-    public void ContinueGame()
-    {
-
-    }
 
     public void RestartGame()
     {
 
     }
 
-    public void StopGame()
-    {
 
-    }
 
     public void EndGame()
     {
