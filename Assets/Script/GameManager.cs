@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI RemainingTimeText;
     private float RemainingTime;
     private CharacterComponent[] characters;
+    private List< CharacterComponent> redTeamCharacter;
+    private List< CharacterComponent> blueTeamCharacter;
     private static GameManager instance = null;
 
     public delegate void GameStartDel();
@@ -20,6 +22,8 @@ public class GameManager : MonoBehaviour
     public delegate void GameTickDel();
     public static event GameStartDel SendGameStartEvent;
     public static event GameTickDel SendGameTickEvent;
+
+    private Coroutine GameTimer;
     
     void Awake()
     {
@@ -39,6 +43,16 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         characters = FindObjectsOfType<CharacterComponent>();
+        redTeamCharacter = new();
+        blueTeamCharacter = new();
+        
+        foreach (CharacterComponent character in characters)
+        {
+            if(character.Team == ETEAM.Blue)
+                blueTeamCharacter.Add(character);
+            else if (character.Team == ETEAM.Red)
+                redTeamCharacter.Add(character);
+        }
     }
 
     public static GameManager Instance
@@ -56,7 +70,7 @@ public class GameManager : MonoBehaviour
     {
         // Init UI
         RemainingTime = MaxTime;
-        StartCoroutine(SetGameTimer());
+        GameTimer =  StartCoroutine(SetGameTimer());
 
         RemainingTimeText.gameObject.SetActive(true);
         GameStartButton.gameObject.SetActive(false);
@@ -76,7 +90,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        
+        Debug.Log("end game");
     }
     
 
@@ -84,12 +98,31 @@ public class GameManager : MonoBehaviour
     {
         while (RemainingTime > 0)
         {
-            RemainingTime -= 1.0f;
+            
+            //생존자 확인
+            bool isRedTeamAllDide = true;
+            foreach (CharacterComponent character in redTeamCharacter)
+            {
+                isRedTeamAllDide = isRedTeamAllDide && character.IsDead;
+            }
+            bool isBlueTeamAllDide = true;
+            foreach (CharacterComponent character in blueTeamCharacter)
+            {
+                isBlueTeamAllDide = isBlueTeamAllDide && character.IsDead;
+            }
+
+            if (isRedTeamAllDide || isBlueTeamAllDide)
+            {
+                StopCoroutine(GameTimer);
+                EndGame();
+            }
+            
             RemainingTimeText.SetText(RemainingTime.ToString());
+            
             yield return new WaitForSeconds(1.0f);
-
+            RemainingTime -= 1.0f;
             SendGameTickEvent();
-
+            
         }
         EndGame();
         
