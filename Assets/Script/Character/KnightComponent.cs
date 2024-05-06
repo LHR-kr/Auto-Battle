@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class KnightComponent : CharacterComponent
@@ -28,6 +30,10 @@ public class KnightComponent : CharacterComponent
             if (team == character.Team)
                 continue;
             
+            if(character.transform.position.x < transform.position.x)
+                FlipSpriteX(true);
+            else
+                FlipSpriteX(false);
             animator.SetTrigger("Attack");
             // 데미지 
             character.TakeDamage(attackDamage);

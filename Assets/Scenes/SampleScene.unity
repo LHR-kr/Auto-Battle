@@ -178,11 +178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2646806767529052941, guid: d578338f74346394daaaa466fd92060d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.6
+      value: -4.81
       objectReference: {fileID: 0}
     - target: {fileID: 2646806767529052941, guid: d578338f74346394daaaa466fd92060d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.53
+      value: -0.04
       objectReference: {fileID: 0}
     - target: {fileID: 2646806767529052941, guid: d578338f74346394daaaa466fd92060d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -230,11 +230,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4379835618082043081, guid: d578338f74346394daaaa466fd92060d, type: 3}
       propertyPath: m_Name
-      value: Warrior (1)
+      value: Blue Warrior
       objectReference: {fileID: 0}
     - target: {fileID: 4379835618082043081, guid: d578338f74346394daaaa466fd92060d, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4829948878300465954, guid: d578338f74346394daaaa466fd92060d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 163308503, guid: 9ba0288c8be786446ab1ed66db3071a4, type: 3}
+    - target: {fileID: 5952007050143801620, guid: d578338f74346394daaaa466fd92060d, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6140544506403403377, guid: d578338f74346394daaaa466fd92060d, type: 3}
       propertyPath: team
@@ -730,11 +738,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2646806767529052941, guid: d578338f74346394daaaa466fd92060d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.98
+      value: 2.87
       objectReference: {fileID: 0}
     - target: {fileID: 2646806767529052941, guid: d578338f74346394daaaa466fd92060d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.05
+      value: -1.46
       objectReference: {fileID: 0}
     - target: {fileID: 2646806767529052941, guid: d578338f74346394daaaa466fd92060d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -778,11 +786,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4379835618082043081, guid: d578338f74346394daaaa466fd92060d, type: 3}
       propertyPath: m_Name
-      value: Warrior
+      value: Red Warrior
       objectReference: {fileID: 0}
     - target: {fileID: 4379835618082043081, guid: d578338f74346394daaaa466fd92060d, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952007050143801620, guid: d578338f74346394daaaa466fd92060d, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6329991875136572009, guid: d578338f74346394daaaa466fd92060d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1851,6 +1863,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1763877635289588038, guid: a1c79758a40873f4fabeca58a9b5998f, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3672870249041172828, guid: a1c79758a40873f4fabeca58a9b5998f, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.12435
@@ -1905,7 +1921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5467076799058356814, guid: a1c79758a40873f4fabeca58a9b5998f, type: 3}
       propertyPath: m_Name
-      value: Archer
+      value: Red Archer
       objectReference: {fileID: 0}
     - target: {fileID: 5467076799058356814, guid: a1c79758a40873f4fabeca58a9b5998f, type: 3}
       propertyPath: m_Layer
@@ -3034,7 +3050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2442947047829256462, guid: 458ee67b3e5640440858a4b86caefae5, type: 3}
       propertyPath: m_Name
-      value: Knight (1)
+      value: Blue Knight
       objectReference: {fileID: 0}
     - target: {fileID: 2442947047829256462, guid: 458ee67b3e5640440858a4b86caefae5, type: 3}
       propertyPath: m_Layer
@@ -3092,6 +3108,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7850922992382984794, guid: 458ee67b3e5640440858a4b86caefae5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 163308503, guid: 9ba0288c8be786446ab1ed66db3071a4, type: 3}
     - target: {fileID: 9119598444420861773, guid: 458ee67b3e5640440858a4b86caefae5, type: 3}
       propertyPath: team
       value: 1
@@ -3444,7 +3464,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2442947047829256462, guid: 458ee67b3e5640440858a4b86caefae5, type: 3}
       propertyPath: m_Name
-      value: Knight
+      value: Red Knight
       objectReference: {fileID: 0}
     - target: {fileID: 2442947047829256462, guid: 458ee67b3e5640440858a4b86caefae5, type: 3}
       propertyPath: m_Layer
@@ -5658,6 +5678,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1516168330947578330, guid: a1c79758a40873f4fabeca58a9b5998f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 163308503, guid: 9ba0288c8be786446ab1ed66db3071a4, type: 3}
     - target: {fileID: 1763877635289588038, guid: a1c79758a40873f4fabeca58a9b5998f, type: 3}
       propertyPath: m_FlipX
       value: 1
@@ -5720,7 +5744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5467076799058356814, guid: a1c79758a40873f4fabeca58a9b5998f, type: 3}
       propertyPath: m_Name
-      value: Archer (1)
+      value: Blue Archer
       objectReference: {fileID: 0}
     - target: {fileID: 5467076799058356814, guid: a1c79758a40873f4fabeca58a9b5998f, type: 3}
       propertyPath: m_Layer
@@ -6328,10 +6352,10 @@ SceneRoots:
   - {fileID: 1619360631}
   - {fileID: 414153463}
   - {fileID: 490174577}
+  - {fileID: 1097224322}
+  - {fileID: 216801589}
   - {fileID: 1991711370}
   - {fileID: 881956819}
   - {fileID: 52474288}
-  - {fileID: 1097224322}
-  - {fileID: 216801589}
   - {fileID: 863516964}
   - {fileID: 770337104}

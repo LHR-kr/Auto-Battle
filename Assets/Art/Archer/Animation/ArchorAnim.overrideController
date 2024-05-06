@@ -7,5 +7,11 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ArchorAnim
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: fa4be28485487704a93445e3e1146966, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 3be8c16aa4f267f49bf6808d09f7aab8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b95bd48092d17fd4a830d0578399d27f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3230f95629afa524fbbf1c524d3ebe57, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3d3f410c6baab494eb7be9c8e7b982e9, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a42b17ef5a6fe7840b5bd2766634b0f2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fa8c58979e452d24ba165b8534586fc3, type: 2}

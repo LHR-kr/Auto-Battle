@@ -35,6 +35,11 @@ public class ArcherComponent : CharacterComponent
                 if (team == character.Team)
                     continue;
                 
+                if(character.transform.position.x < transform.position.x)
+                    FlipSpriteX(true);
+                else
+                    FlipSpriteX(false);
+                
                 animator.SetTrigger("Attack");
                 // 투사체 발사
 

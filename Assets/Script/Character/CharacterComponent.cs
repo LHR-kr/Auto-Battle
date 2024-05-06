@@ -76,5 +76,9 @@ public abstract class CharacterComponent : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.forward, Mathf.Infinity, LayerMask.GetMask("Tile"));
         return hit.collider.GetComponent<TileComponent>();
     }
-    
+
+    protected void FlipSpriteX(bool isFlipped)
+    {
+        GetComponent<SpriteRenderer>().flipX = isFlipped;
+    }
 }

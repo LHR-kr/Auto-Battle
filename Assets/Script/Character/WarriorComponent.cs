@@ -11,6 +11,8 @@ public class WarriorComponent : CharacterComponent
     {
         TileComponent tile = GetTileUnderCharacter();
         if (!tile) return;
+
+        bool isFlipped = false;
         for (int i = 0; i < AttackRangeX.Length; i++)
         {
             int attackXPos = tile.xCoordinate + AttackRangeX[i];
@@ -27,12 +29,14 @@ public class WarriorComponent : CharacterComponent
                 continue;
             if (team == character.Team)
                 continue;
+            if (character.transform.position.x < transform.position.x)
+                isFlipped = (isFlipped || true);
             
             animator.SetTrigger("Attack");
             // 데미지 
             character.TakeDamage(attackDamage);
         }
-        
+        FlipSpriteX(isFlipped);      
     }
     
 }
