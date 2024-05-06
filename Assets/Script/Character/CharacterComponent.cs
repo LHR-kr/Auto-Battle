@@ -17,8 +17,9 @@ public abstract class CharacterComponent : MonoBehaviour
     [SerializeField] protected ETEAM team; 
     [SerializeField] protected float maxHP;
     protected Animator animator;
-    abstract protected void Attack();
 
+   
+    protected abstract List<CharacterComponent> GetAttackTarget();
     public float HP
     {
         get
@@ -57,9 +58,27 @@ public abstract class CharacterComponent : MonoBehaviour
     
     public void Act()
     {
-        Attack();
+        List<CharacterComponent> attackTargets = GetAttackTarget();
+        if(attackTargets.Count > 0)
+            Attack(attackTargets);
+        else
+            Move();
+        
     }
-
+    protected virtual void Attack(List<CharacterComponent> attackTarget)
+    {
+        foreach (CharacterComponent character in attackTarget)
+        {
+            if(character.transform.position.x < transform.position.x)
+                FlipSpriteX(true);
+            else
+                FlipSpriteX(false);
+            animator.SetTrigger("Attack");
+            // 데미지 
+            character.TakeDamage(attackDamage);
+            // 한 놈만 때림.
+        }
+    }
     private void Move()
     {
         
@@ -81,4 +100,7 @@ public abstract class CharacterComponent : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().flipX = isFlipped;
     }
+
+
+    
 }
