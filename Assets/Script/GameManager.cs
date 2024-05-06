@@ -9,9 +9,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private float MaxTime;
-    [SerializeField] private Button GameStartButton;
-    [SerializeField] private TextMeshProUGUI RemainingTimeText;
-    private float RemainingTime;
+    
+    private float remainingTime;
     private CharacterComponent[] characters;
     private List< CharacterComponent> redTeamCharacter;
     private List< CharacterComponent> blueTeamCharacter;
@@ -24,6 +23,14 @@ public class GameManager : MonoBehaviour
     public static event GameTickDel SendGameTickEvent;
 
     private Coroutine GameTimer;
+
+    public float RemainingTime
+    {
+        get
+        {
+            return remainingTime;
+        }
+    }
     
     void Awake()
     {
@@ -68,15 +75,9 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        // Init UI
-        RemainingTime = MaxTime;
-        GameTimer =  StartCoroutine(SetGameTimer());
-
-        RemainingTimeText.gameObject.SetActive(true);
-        GameStartButton.gameObject.SetActive(false);
-        
-        // Send Game Start Event
+        remainingTime = MaxTime;
         SendGameStartEvent();
+        GameTimer =  StartCoroutine(SetGameTimer());
     }
 
 
@@ -96,7 +97,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SetGameTimer()
     {
-        while (RemainingTime > 0)
+        while (remainingTime > 0)
         {
             
             //생존자 확인
@@ -117,10 +118,9 @@ public class GameManager : MonoBehaviour
                 EndGame();
             }
             
-            RemainingTimeText.SetText(RemainingTime.ToString());
             
             yield return new WaitForSeconds(1.0f);
-            RemainingTime -= 1.0f;
+            remainingTime -= 1.0f;
             SendGameTickEvent();
             
         }
