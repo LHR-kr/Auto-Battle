@@ -28,12 +28,12 @@ public class ArcherComponent : CharacterComponent
                 int attackXPos = tile.xCoordinate + AttackRangeX[i] * radius;
                 int attackYPos = tile.yCoordinate + AttackRangeY[i] * radius;
 
-                if (attackXPos < 0 || attackXPos >= TileManager.Instance.Col
-                                   || attackYPos < 0 || attackYPos >= TileManager.Instance.Row)
+                if (attackXPos < 0 || attackXPos >= TileStart.Instance.Col
+                                   || attackYPos < 0 || attackYPos >= TileStart.Instance.Row)
                     continue;
 
                 // 공격 유효성 체크
-                CharacterComponent character = TileManager.Instance.Tiles[attackYPos, attackXPos].GetCharacterOnTile();
+                CharacterComponent character = TileStart.Instance.Tiles[attackYPos, attackXPos].GetCharacterOnTile();
                 if (!character)
                     continue;
                 if (team == character.Team)

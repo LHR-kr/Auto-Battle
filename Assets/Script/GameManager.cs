@@ -17,7 +17,9 @@ public class GameManager : MonoBehaviour
 
     public delegate void GameStartDel();
 
-    public event GameStartDel SendGameStartEvent;
+    public delegate void GameTickDel();
+    public static event GameStartDel SendGameStartEvent;
+    public static event GameTickDel SendGameTickEvent;
     
     void Awake()
     {
@@ -86,13 +88,8 @@ public class GameManager : MonoBehaviour
             RemainingTimeText.SetText(RemainingTime.ToString());
             yield return new WaitForSeconds(1.0f);
 
-            foreach (CharacterComponent character in characters)
-            {
-                if(character.IsDead)
-                    continue;
-                character.Act();
-            }
-            
+            SendGameTickEvent();
+
         }
         EndGame();
         

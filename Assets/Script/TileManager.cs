@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TileManager : MonoBehaviour
+public class TileStart : MonoBehaviour, IGameStartEventListener
 {
-    private static TileManager instance = null;
+    private static TileStart instance = null;
     private int row = 5;
     private int col = 10;
     private TileComponent[,] tiles; //비순차적, 임의 접근이 필요하므로 List 대신 배열 사용
@@ -28,6 +28,8 @@ public class TileManager : MonoBehaviour
 
     private void Start()
     {
+
+        GameManager.SendGameStartEvent += HandleGameStartEvent;
         TileComponent[] arrTiles = GetComponentsInChildren<TileComponent>();
         Array.Sort(arrTiles);
 
@@ -42,7 +44,7 @@ public class TileManager : MonoBehaviour
         }
     }
 
-    public static TileManager Instance
+    public static TileStart Instance
     {
         get
         {
@@ -68,5 +70,12 @@ public class TileManager : MonoBehaviour
     {
         get { return col; }
     }
-    
+
+    public void HandleGameStartEvent()
+    {
+        foreach (TileComponent tile in tiles)
+        {
+            tile.isValidTile = true;
+        }
+    }
 }

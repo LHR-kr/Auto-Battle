@@ -11,7 +11,7 @@ public enum ETEAM
 }
 
 
-public abstract class CharacterComponent : MonoBehaviour, IGameManagerEventListener
+public abstract class CharacterComponent : MonoBehaviour, IGameStartEventListener, IGameTickEventListener
 {
     protected float hp;
     [SerializeField] protected float attackDamage;
@@ -49,9 +49,20 @@ public abstract class CharacterComponent : MonoBehaviour, IGameManagerEventListe
 
     private void Start()
     {
-        GameManager.Instance.SendGameStartEvent += HandleGameStartEvent;
+        GameManager.SendGameStartEvent += HandleGameStartEvent;
+        
         animator = GetComponent<Animator>();
         hp = maxHP;
+    }
+
+    private void OnEnable()
+    {
+        GameManager.SendGameTickEvent += HandleGameTickEvent;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.SendGameTickEvent -= HandleGameTickEvent;
     }
 
     public void InitCharacter()
@@ -119,12 +130,12 @@ public abstract class CharacterComponent : MonoBehaviour, IGameManagerEventListe
             int newY = tileUnderCharacter.yCoordinate + moveY[i];
             
             // check is valid move
-            if(newX < 0 || newX >= TileManager.Instance.Col ||
-               newY < 0 || newY >= TileManager.Instance.Row)
+            if(newX < 0 || newX >= TileStart.Instance.Col ||
+               newY < 0 || newY >= TileStart.Instance.Row)
                 continue;
-            if(TileManager.Instance.Tiles[newY,newX].GetCharacterOnTile()) 
+            if(TileStart.Instance.Tiles[newY,newX].GetCharacterOnTile()) 
                 continue;
-            if (!TileManager.Instance.Tiles[newY, newX].isValidTile)
+            if (!TileStart.Instance.Tiles[newY, newX].isValidTile)
                 continue;
             int newManhattanDistance = Mathf.Abs(tileUnderMoveTarget.xCoordinate - newX) +
                                        Mathf.Abs(tileUnderMoveTarget.yCoordinate - newY);
@@ -140,11 +151,11 @@ public abstract class CharacterComponent : MonoBehaviour, IGameManagerEventListe
         if(moveDirX<0 ) FlipSpriteX(true);
         else FlipSpriteX(false);
         
-        Vector3 movePos = TileManager.Instance
+        Vector3 movePos = TileStart.Instance
             .Tiles[tileUnderCharacter.yCoordinate + moveDirY, tileUnderCharacter.xCoordinate + moveDirX].transform.position;
-        TileManager.Instance.Tiles[tileUnderCharacter.yCoordinate + moveDirY, tileUnderCharacter.xCoordinate + moveDirX]
+        TileStart.Instance.Tiles[tileUnderCharacter.yCoordinate + moveDirY, tileUnderCharacter.xCoordinate + moveDirX]
             .isValidTile = false;
-        TileManager.Instance.Tiles[tileUnderCharacter.yCoordinate, tileUnderCharacter.xCoordinate].isValidTile = true;
+        TileStart.Instance.Tiles[tileUnderCharacter.yCoordinate, tileUnderCharacter.xCoordinate].isValidTile = true;
         StartCoroutine(MoveCoroutine(movePos));
     }
 
@@ -194,5 +205,10 @@ public abstract class CharacterComponent : MonoBehaviour, IGameManagerEventListe
     public void HandleGameStartEvent()
     {
         hp = maxHP;
+    }
+
+    public void HandleGameTickEvent()
+    {
+        Act();
     }
 }
