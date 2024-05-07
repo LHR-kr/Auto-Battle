@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
+
 public class ArcherComponent : CharacterComponent
 {
 
@@ -62,4 +63,5 @@ public class ArcherComponent : CharacterComponent
         arrow.Owner = this.gameObject;
         return;
     }
+    
 }
