@@ -85,6 +85,7 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
             yield return null;
         }
         animator.SetBool("Move", false);
+        GetTileUnderCharacter().isValidTile = true;
     }
 
 }

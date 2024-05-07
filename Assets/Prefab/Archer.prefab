@@ -158,9 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737265b3704418d41a40539eec3226f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 20
   team: 0
   maxHP: 30
+  attackDamage: 20
   arrowPrefab: {fileID: 2182312912438001032, guid: 91f82f9ca6da0fc42990c23034a587bd, type: 3}
 --- !u!95 &757493160856442049
 Animator:

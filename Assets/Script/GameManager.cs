@@ -128,9 +128,14 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SetGameTimer()
     {
-        while (remainingTime > 0)
+        yield return new WaitForSeconds(1.0f);
+        remainingTime -= 1.0f;
+        while (remainingTime >= 0)
         {
-            //생존자 확인
+            SendGameTickEvent();
+            yield return new WaitForSeconds(1.0f);
+            remainingTime -= 1.0f;
+            
             bool isRedTeamAllDide = true;
             foreach (CharacterComponent character in redTeamCharacter)
             {
@@ -148,9 +153,7 @@ public class GameManager : MonoBehaviour
                 EndGame();
             }
             
-            yield return new WaitForSeconds(1.0f);
-            remainingTime -= 1.0f;
-            SendGameTickEvent();
+            
         }
         
         
@@ -166,6 +169,5 @@ public class GameManager : MonoBehaviour
             return characters;
         }
     }
-    
     
 }

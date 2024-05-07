@@ -104,8 +104,9 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
     public void TakeDamage(float Damage)
     {
         hp -= Damage;
-        if(hp<=0)
+        if (hp <= 0) 
             this.gameObject.SetActive(false);
+        
     }
 
     protected TileComponent GetTileUnderCharacter()
