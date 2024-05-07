@@ -41,12 +41,12 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
             int newY = tileUnderCharacter.yCoordinate + moveY[i];
             
             // check is valid move
-            if(newX < 0 || newX >= TileStart.Instance.Col ||
-               newY < 0 || newY >= TileStart.Instance.Row)
+            if(newX < 0 || newX >= TileManager.Instance.Col ||
+               newY < 0 || newY >= TileManager.Instance.Row)
                 continue;
-            if(TileStart.Instance.Tiles[newY,newX].GetCharacterOnTile()) 
+            if(TileManager.Instance.Tiles[newY,newX].GetCharacterOnTile()) 
                 continue;
-            if (!TileStart.Instance.Tiles[newY, newX].isValidTile)
+            if (!TileManager.Instance.Tiles[newY, newX].isValidTile)
                 continue;
             int newManhattanDistance = Mathf.Abs(tileUnderMoveTarget.xCoordinate - newX) +
                                        Mathf.Abs(tileUnderMoveTarget.yCoordinate - newY);
@@ -62,11 +62,11 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
         if(moveDirX<0 ) FlipSpriteX(true);
         else FlipSpriteX(false);
         
-        Vector3 movePos = TileStart.Instance
+        Vector3 movePos = TileManager.Instance
             .Tiles[tileUnderCharacter.yCoordinate + moveDirY, tileUnderCharacter.xCoordinate + moveDirX].transform.position;
-        TileStart.Instance.Tiles[tileUnderCharacter.yCoordinate + moveDirY, tileUnderCharacter.xCoordinate + moveDirX]
+        TileManager.Instance.Tiles[tileUnderCharacter.yCoordinate + moveDirY, tileUnderCharacter.xCoordinate + moveDirX]
             .isValidTile = false;
-        TileStart.Instance.Tiles[tileUnderCharacter.yCoordinate, tileUnderCharacter.xCoordinate].isValidTile = true;
+        TileManager.Instance.Tiles[tileUnderCharacter.yCoordinate, tileUnderCharacter.xCoordinate].isValidTile = true;
         StartCoroutine(MoveCoroutine(movePos));
     }
     

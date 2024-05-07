@@ -23,12 +23,12 @@ public class KnightComponent : CharacterComponent
             int attackYPos = tile.yCoordinate + AttackRangeY[i];
 
             // 공격 범위 체크
-            if (attackXPos < 0 || attackXPos >= TileStart.Instance.Col
-                               || attackYPos < 0 || attackYPos >= TileStart.Instance.Row)
+            if (attackXPos < 0 || attackXPos >= TileManager.Instance.Col
+                               || attackYPos < 0 || attackYPos >= TileManager.Instance.Row)
                 continue;
 
             // 공격 유효성 체크
-            CharacterComponent character = TileStart.Instance.Tiles[attackYPos, attackXPos].GetCharacterOnTile();
+            CharacterComponent character = TileManager.Instance.Tiles[attackYPos, attackXPos].GetCharacterOnTile();
             if (!character)
                 continue;
             if (team == character.Team)

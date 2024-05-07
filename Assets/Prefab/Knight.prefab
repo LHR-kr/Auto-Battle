@@ -158,9 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c897cd5519a5f43b8a001a4b8f9017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 10
   team: 0
   maxHP: 50
+  attackDamage: 10
 --- !u!95 &-9095856985500440565
 Animator:
   serializedVersion: 5
