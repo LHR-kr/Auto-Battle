@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
-public abstract class CharacterComponent : MonoBehaviour, IGameStartEventListener, IGameTickEventListener
+public abstract class CharacterComponent : MonoBehaviour, IGameStartEventListener, IGameTickEventListener, IGameRestartEvent
 {
     protected float hp;
     [SerializeField] protected float attackDamage;
@@ -44,7 +44,7 @@ public abstract class CharacterComponent : MonoBehaviour, IGameStartEventListene
     private void Start()
     {
         GameManager.SendGameStartEvent += HandleGameStartEvent;
-        
+        GameManager.SendGameRestartEvent += HandleGameRestartEvent;
         animator = GetComponent<Animator>();
         hp = maxHP;
     }
@@ -204,5 +204,10 @@ public abstract class CharacterComponent : MonoBehaviour, IGameStartEventListene
     public void HandleGameTickEvent()
     {
         Act();
+    }
+
+    public void HandleGameRestartEvent()
+    {
+        hp = maxHP;
     }
 }

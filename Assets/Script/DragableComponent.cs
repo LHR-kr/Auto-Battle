@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class DragableComponent : MonoBehaviour, IGameStartEventListener
+public class DragableComponent : MonoBehaviour, IGameStartEventListener,IGameRestartEvent
 {
     private Vector3 StartPos;
     private Vector3 PrevPos;
@@ -14,6 +14,8 @@ public class DragableComponent : MonoBehaviour, IGameStartEventListener
     {
         StartPos = transform.position;
         isDragable = true;
+        GameManager.SendGameStartEvent += HandleGameStartEvent;
+        GameManager.SendGameRestartEvent += HandleGameRestartEvent;
     }
 
     private void OnMouseDrag()
@@ -69,4 +71,8 @@ public class DragableComponent : MonoBehaviour, IGameStartEventListener
         isDragable = false;
     }
 
+    public void HandleGameRestartEvent()
+    {
+        isDragable = true;
+    }
 }

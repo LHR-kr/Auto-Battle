@@ -5,7 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-public class UIManager : MonoBehaviour, IGameStartEventListener, IGameTickEventListener, IGameEndEventListener
+public class UIManager : MonoBehaviour, IGameStartEventListener, IGameTickEventListener, IGameEndEventListener, IGameRestartEvent
 {
     private static UIManager instance = null;
     [SerializeField] private Button GameStartButton;
@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour, IGameStartEventListener, IGameTickEventL
         GameManager.SendGameStartEvent += HandleGameStartEvent;
         GameManager.SendGameTickEvent += HandleGameTickEvent;
         GameManager.SendGameEndEvent += HandleGameEndEvent;
+        GameManager.SendGameRestartEvent += HandleGameRestartEvent;
     }
 
     public void HandleGameStartEvent()
@@ -76,4 +77,11 @@ public class UIManager : MonoBehaviour, IGameStartEventListener, IGameTickEventL
         GameEndText.SetText(text);
         GameEndUIObject.SetActive(true);
     }
+
+    public void HandleGameRestartEvent()
+    {
+        GameStartButton.gameObject.SetActive(true);
+        GameEndUIObject.SetActive(false);
+    }
+    
 }

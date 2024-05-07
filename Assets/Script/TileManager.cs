@@ -78,4 +78,6 @@ public class TileStart : MonoBehaviour, IGameStartEventListener
             tile.isValidTile = true;
         }
     }
+
+
 }

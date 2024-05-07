@@ -26,10 +26,12 @@ public class GameManager : MonoBehaviour
 
     public delegate void GameTickDel();
     public delegate void GameEndDel(ETEAM winner);
+    public delegate void GameRestartDel();
     
     public static event GameStartDel SendGameStartEvent;
     public static event GameTickDel SendGameTickEvent;
     public static event GameEndDel SendGameEndEvent;
+    public static event GameRestartDel SendGameRestartEvent;
 
     private Coroutine GameTimer;
 
@@ -93,7 +95,11 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-
+        foreach (CharacterComponent charater in characters)
+        {
+            charater.gameObject.SetActive(true);
+        }
+        SendGameRestartEvent();
     }
 
 
