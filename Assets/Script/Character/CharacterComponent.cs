@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public abstract class CharacterComponent : MonoBehaviour, IGameStartEventListener, IGameTickEventListener, IGameRestartEvent
 {
+    private Vector3 startPos;
     protected float hp;
     [SerializeField] protected float attackDamage;
     [SerializeField] protected ETEAM team; 
@@ -47,6 +48,7 @@ public abstract class CharacterComponent : MonoBehaviour, IGameStartEventListene
         GameManager.SendGameRestartEvent += HandleGameRestartEvent;
         animator = GetComponent<Animator>();
         hp = maxHP;
+        startPos = transform.position;
     }
 
     private void OnEnable()
@@ -209,5 +211,11 @@ public abstract class CharacterComponent : MonoBehaviour, IGameStartEventListene
     public void HandleGameRestartEvent()
     {
         hp = maxHP;
+        transform.position = startPos;
+        if(team== ETEAM.Red)
+            FlipSpriteX(false);
+        else if(team == ETEAM.Blue)
+            FlipSpriteX(true);
+            
     }
 }

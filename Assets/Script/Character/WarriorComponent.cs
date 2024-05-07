@@ -15,8 +15,7 @@ public class WarriorComponent : CharacterComponent
         
         TileComponent tile = GetTileUnderCharacter();
         if (!tile) return attackTargets;
-
-        bool isFlipped = false;
+        
         for (int i = 0; i < AttackRangeX.Length; i++)
         {
             int attackXPos = tile.xCoordinate + AttackRangeX[i];
