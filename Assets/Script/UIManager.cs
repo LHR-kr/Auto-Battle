@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour, IGameStartEventListener, IGameTickEventL
     [SerializeField] private Button GameStartButton;
     [SerializeField] private TextMeshProUGUI RemainingTimeText;
     [SerializeField] private GameObject GameEndUIObject;
+    [SerializeField] private TextMeshProUGUI GameEndText;
     private void Awake()
     {
         if (instance == null)
@@ -53,9 +54,26 @@ public class UIManager : MonoBehaviour, IGameStartEventListener, IGameTickEventL
         RemainingTimeText.SetText(GameManager.Instance.RemainingTime.ToString());
     }
 
-    public void HandleGameEndEvent()
+    public void HandleGameEndEvent(ETEAM winner)
     {
+        string text = "Game End!\n";
         RemainingTimeText.gameObject.SetActive(false);
+
+        switch (winner)
+        {
+            case ETEAM.Red:
+                text += "Red Team Win!";
+                break;
+            case ETEAM.Blue:
+                text += "Blue Team Win!";
+                break;
+            case ETEAM.None:
+                text += "Draw!";
+                break;
+            default:
+                break;
+        }
+        GameEndText.SetText(text);
         GameEndUIObject.SetActive(true);
     }
 }

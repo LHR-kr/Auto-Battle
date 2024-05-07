@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IGameEndEventListener
 {
-    public void HandleGameEndEvent();
+    public void HandleGameEndEvent(ETEAM winner);
 }

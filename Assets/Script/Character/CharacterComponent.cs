@@ -5,12 +5,6 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
-public enum ETEAM
-{
-    Red,Blue
-}
-
-
 public abstract class CharacterComponent : MonoBehaviour, IGameStartEventListener, IGameTickEventListener
 {
     protected float hp;

@@ -6,6 +6,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum ETEAM
+{
+    Red,Blue,None
+}
+
+
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private float MaxTime;
@@ -19,7 +25,7 @@ public class GameManager : MonoBehaviour
     public delegate void GameStartDel();
 
     public delegate void GameTickDel();
-    public delegate void GameEndDel();
+    public delegate void GameEndDel(ETEAM winner);
     
     public static event GameStartDel SendGameStartEvent;
     public static event GameTickDel SendGameTickEvent;
@@ -94,7 +100,23 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        SendGameEndEvent();
+        bool isRedTeamAllDide = true;
+        foreach (CharacterComponent character in redTeamCharacter)
+        {
+            isRedTeamAllDide = isRedTeamAllDide && character.IsDead;
+        }
+        bool isBlueTeamAllDide = true;
+        foreach (CharacterComponent character in blueTeamCharacter)
+        {
+            isBlueTeamAllDide = isBlueTeamAllDide && character.IsDead;
+        }
+        
+        if(isRedTeamAllDide && !isBlueTeamAllDide)
+            SendGameEndEvent(ETEAM.Blue);
+        else if (!isRedTeamAllDide && isBlueTeamAllDide)
+            SendGameEndEvent(ETEAM.Red);
+        else
+            SendGameEndEvent(ETEAM.None);
     }
     
 
@@ -102,7 +124,6 @@ public class GameManager : MonoBehaviour
     {
         while (remainingTime > 0)
         {
-            
             //생존자 확인
             bool isRedTeamAllDide = true;
             foreach (CharacterComponent character in redTeamCharacter)
@@ -121,12 +142,13 @@ public class GameManager : MonoBehaviour
                 EndGame();
             }
             
-            
             yield return new WaitForSeconds(1.0f);
             remainingTime -= 1.0f;
             SendGameTickEvent();
-            
         }
+        
+        
+        yield return new WaitForSeconds(1.0f);
         EndGame();
         
     }
