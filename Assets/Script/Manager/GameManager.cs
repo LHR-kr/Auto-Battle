@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public enum ETEAM
@@ -23,13 +25,15 @@ public class GameManager : MonoBehaviour
     private static GameManager instance = null;
 
     public delegate void GameStartDel();
-
     public delegate void GameTickDel();
+    public delegate void GameTickEndDel();
     public delegate void GameEndDel(ETEAM winner);
     public delegate void GameRestartDel();
+
     
     public static event GameStartDel SendGameStartEvent;
     public static event GameTickDel SendGameTickEvent;
+    public static event GameTickEndDel SendGameTickEndEvent;
     public static event GameEndDel SendGameEndEvent;
     public static event GameRestartDel SendGameRestartEvent;
 
@@ -61,6 +65,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         characters = FindObjectsOfType<CharacterComponent>();
+        Array.Sort(characters, (a, b) =>
+        {
+            return a.transform.GetSiblingIndex().CompareTo(b.transform.GetSiblingIndex());
+        });
         redTeamCharacter = new();
         blueTeamCharacter = new();
         
@@ -109,12 +117,12 @@ public class GameManager : MonoBehaviour
         bool isRedTeamAllDide = true;
         foreach (CharacterComponent character in redTeamCharacter)
         {
-            isRedTeamAllDide = isRedTeamAllDide && character.IsDead;
+            isRedTeamAllDide = isRedTeamAllDide && !character.isActiveAndEnabled;
         }
         bool isBlueTeamAllDide = true;
         foreach (CharacterComponent character in blueTeamCharacter)
         {
-            isBlueTeamAllDide = isBlueTeamAllDide && character.IsDead;
+            isBlueTeamAllDide = isBlueTeamAllDide && !character.isActiveAndEnabled;
         }
         
         if(isRedTeamAllDide && !isBlueTeamAllDide)
@@ -133,21 +141,24 @@ public class GameManager : MonoBehaviour
         while (remainingTime >= 0)
         {
             SendGameTickEvent();
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.7f);
+            SendGameTickEndEvent();
+            yield return new WaitForSeconds(0.3f);
             remainingTime -= 1.0f;
-            
-            bool isRedTeamAllDide = true;
+
+
+            bool isRedTeamAllDied = true;
             foreach (CharacterComponent character in redTeamCharacter)
             {
-                isRedTeamAllDide = isRedTeamAllDide && character.IsDead;
+                isRedTeamAllDied = isRedTeamAllDied && !character.isActiveAndEnabled;
             }
-            bool isBlueTeamAllDide = true;
+            bool isBlueTeamAllDied = true;
             foreach (CharacterComponent character in blueTeamCharacter)
             {
-                isBlueTeamAllDide = isBlueTeamAllDide && character.IsDead;
+                isBlueTeamAllDied = isBlueTeamAllDied && !character.isActiveAndEnabled;
             }
 
-            if (isRedTeamAllDide || isBlueTeamAllDide)
+            if (isRedTeamAllDied || isBlueTeamAllDied)
             {
                 StopCoroutine(GameTimer);
                 EndGame();

@@ -9,8 +9,8 @@ using UnityEngine.Tilemaps;
 
 public class ArcherComponent : CharacterComponent
 {
-    private int[] moveX = { 0, 0, 1, -1 };
-    private int[] moveY = { 1, -1, 0, 0 };
+    private int[] attackRangeX = { 0, 0, 1, -1 };
+    private int[] attackRangeY = { 1, -1, 0, 0 };
 
     [SerializeField]private GameObject arrowPrefab;
     private int AttackRadius = 3;
@@ -44,16 +44,16 @@ public class ArcherComponent : CharacterComponent
             int nowY = nowNode.y;
 
             CharacterComponent character = TileManager.Instance.Tiles[nowY, nowX].GetCharacterOnTile();
-            if (character && team != character.Team && !character.IsDead)
+            if (character && team != character.Team)
             {
                 targetCharacters.Add(character);
                 return targetCharacters;
             }
             
-            for (int i = 0; i < moveX.Length; i++)
+            for (int i = 0; i < attackRangeX.Length; i++)
             {
-                int newX = nowX + moveX[i];
-                int newY = nowY + moveY[i];
+                int newX = nowX + attackRangeX[i];
+                int newY = nowY + attackRangeY[i];
                 
                 if(newX < 0 || newX >=TileManager.Instance.Col
                    || newY < 0 || newY >= TileManager.Instance.Row ) 

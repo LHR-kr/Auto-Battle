@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
-public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEventListener, IGameTickEventListener, IGameRestartEvent
+public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEventListener, IGameTickEventListener, IGameRestartEventListener, IGameTickEndEventListener
 {
     private Vector3 startPos;
     protected float hp;
@@ -13,15 +13,7 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
     [SerializeField] protected ETEAM team; 
     [SerializeField] protected float maxHP;
     protected Animator animator;
-    
-    public bool IsDead
-    {
-        get
-        {
-            return hp <= 0;
-        }
-    }
-    
+
     public float HP
     {
         get
@@ -60,11 +52,13 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
     private void OnEnable()
     {
         GameManager.SendGameTickEvent += HandleGameTickEvent;
+        GameManager.SendGameTickEndEvent += HandleGameTickEndEvent;
     }
 
     private void OnDisable()
     {
         GameManager.SendGameTickEvent -= HandleGameTickEvent;
+        GameManager.SendGameTickEndEvent -= HandleGameTickEndEvent;
     }
 
     public void HandleGameStartEvent()
@@ -87,8 +81,14 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
             FlipSpriteX(true);
             
     }
-    
-    
+
+    public void HandleGameTickEndEvent()
+    {
+        if(hp<= 0)
+            this.gameObject.SetActive(false);
+    }
+
+
     public void Act()
     {
         List<CharacterComponent> attackTargets = GetAttackTarget();
@@ -103,10 +103,7 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
 
     public void TakeDamage(float Damage)
     {
-        hp -= Damage;
-        if (hp <= 0) 
-            this.gameObject.SetActive(false);
-        
+        hp = Mathf.Max(0, hp - Damage);
     }
 
     protected TileComponent GetTileUnderCharacter()

@@ -1,25 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
-using UnityEngine.UI;
 
-public class HPBarComponent : MonoBehaviour
+public class HPTextComponent : MonoBehaviour
 {
+    private TextMeshProUGUI text;
     private CharacterComponent character;
-    private Image image;
     void Start()
     {
         character = GetComponentInParent<CharacterComponent>();
-        image = GetComponent<Image>();
+        text = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (character)
-        {
-            image.fillAmount = (character.HP / character.MaxHP);
-        }
+        string t = string.Format("{0}/{1}", character.HP, character.MaxHP);
+        text.SetText(t);
     }
 }

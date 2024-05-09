@@ -5,7 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-public class UIManager : MonoBehaviour, IGameStartEventListener, IGameTickEventListener, IGameEndEventListener, IGameRestartEvent
+public class UIManager : MonoBehaviour, IGameStartEventListener, IGameTickEventListener, IGameEndEventListener, IGameRestartEventListener
 {
     private static UIManager instance = null;
     [SerializeField] private Button GameStartButton;

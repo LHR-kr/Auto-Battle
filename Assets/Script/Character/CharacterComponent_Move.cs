@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEventListener, IGameTickEventListener, IGameRestartEvent
+public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEventListener, IGameTickEventListener, IGameRestartEventListener, IGameTickEndEventListener
 {
     private void Move()
     {
@@ -15,7 +15,6 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
         foreach (CharacterComponent character in GameManager.Instance.Characters)
         {
             if(Team == character.Team) continue;
-            if(character.IsDead) continue;
             if (movetarget== null)
             {
                 movetarget = character;

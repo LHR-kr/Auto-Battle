@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class DragableComponent : MonoBehaviour, IGameStartEventListener,IGameRestartEvent
+public class DragableComponent : MonoBehaviour, IGameStartEventListener,IGameRestartEventListener
 {
     private Vector3 StartPos;
     private Vector3 PrevPos;
