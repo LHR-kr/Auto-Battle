@@ -44,7 +44,7 @@ public class ArcherComponent : CharacterComponent
             int nowY = nowNode.y;
 
             CharacterComponent character = TileManager.Instance.Tiles[nowY, nowX].GetCharacterOnTile();
-            if (character && team != character.Team)
+            if (character && team != character.Team && !character.IsDead)
             {
                 targetCharacters.Add(character);
                 return targetCharacters;

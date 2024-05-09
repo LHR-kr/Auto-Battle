@@ -72,7 +72,7 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
     
     private IEnumerator MoveCoroutine(Vector3 moveTargetPos)
     {
-        float moveTime = 0.7f;
+        float moveTime = 0.4f;
         float time = 0.0f;
         animator.SetBool("Move", true);
 

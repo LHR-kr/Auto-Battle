@@ -32,7 +32,9 @@ public class WarriorComponent : CharacterComponent
                 continue;
             if (team == character.Team)
                 continue;
-            
+            if (character.IsDead)
+                continue;
+
             attackTargets.Add(character);
         }
         return attackTargets;
