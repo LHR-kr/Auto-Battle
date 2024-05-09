@@ -31,10 +31,10 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
         TileComponent tileUnderCharacter = GetTileUnderCharacter();
         TileComponent tileUnderMoveTarget = movetarget.GetTileUnderCharacter();
         
-        // Manhattan Distance가 가장 작은 방향으로 이동한다.
+        // 이동 후, target과의 거리가 가장 작은 타일로 이동한다.
         int moveDirX = 0;
         int moveDirY = 0;
-        int manhattanDistance = int.MaxValue;
+        float distance = float.MaxValue;
         for (int i = 0; i < moveX.Length; i++)
         {
             int newX = tileUnderCharacter.xCoordinate + moveX[i];
@@ -48,24 +48,24 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
                 continue;
             if (!TileManager.Instance.Tiles[newY, newX].isValidTile)
                 continue;
-            int newManhattanDistance = Mathf.Abs(tileUnderMoveTarget.xCoordinate - newX) +
-                                       Mathf.Abs(tileUnderMoveTarget.yCoordinate - newY);
-            if (newManhattanDistance < manhattanDistance)
+            float newDistance = (tileUnderMoveTarget.transform.position - TileManager.Instance.Tiles[newY,newX].transform.position).sqrMagnitude;
+            if (newDistance < distance)
             {
-                manhattanDistance = newManhattanDistance;
+                distance = newDistance;
                 moveDirX = moveX[i];
                 moveDirY = moveY[i];
             }
 
         }
 
-        if(moveDirX<0 ) FlipSpriteX(true);
+        if(moveDirX<0) FlipSpriteX(true);
         else FlipSpriteX(false);
+
+        int targetTileX = tileUnderCharacter.xCoordinate + moveDirX;
+        int targetTileY = tileUnderCharacter.yCoordinate + moveDirY;
         
-        Vector3 movePos = TileManager.Instance
-            .Tiles[tileUnderCharacter.yCoordinate + moveDirY, tileUnderCharacter.xCoordinate + moveDirX].transform.position;
-        TileManager.Instance.Tiles[tileUnderCharacter.yCoordinate + moveDirY, tileUnderCharacter.xCoordinate + moveDirX]
-            .isValidTile = false;
+        Vector3 movePos = TileManager.Instance.Tiles[targetTileY, targetTileX].transform.position;
+        TileManager.Instance.Tiles[targetTileY, targetTileX].isValidTile = false;
         TileManager.Instance.Tiles[tileUnderCharacter.yCoordinate, tileUnderCharacter.xCoordinate].isValidTile = true;
         StartCoroutine(MoveCoroutine(movePos));
     }
