@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Unity.Mathematics;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Tilemaps;
+
 
 
 public class ArcherComponent : CharacterComponent
@@ -52,7 +50,12 @@ public class ArcherComponent : CharacterComponent
             
             for (int i = 0; i < attackRangeX.Length; i++)
             {
-                int newX = nowX + attackRangeX[i];
+                int attackDirX;
+                if(spriteRenderer.flipX)
+                    attackDirX = -attackRangeX[i];
+                else
+                    attackDirX = attackRangeX[i];
+                int newX = nowX + attackDirX;
                 int newY = nowY + attackRangeY[i];
                 
                 if(newX < 0 || newX >=TileManager.Instance.Col

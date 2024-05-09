@@ -10,6 +10,7 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
     private Vector3 startPos;
     protected float hp;
     
+    protected SpriteRenderer spriteRenderer;
     [SerializeField] protected ETEAM team; 
     [SerializeField] protected float maxHP;
     protected Animator animator;
@@ -45,6 +46,7 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
         GameManager.SendGameStartEvent += HandleGameStartEvent;
         GameManager.SendGameRestartEvent += HandleGameRestartEvent;
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         hp = maxHP;
         startPos = transform.position;
     }
@@ -114,6 +116,6 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
 
     protected void FlipSpriteX(bool isFlipped)
     {
-        GetComponent<SpriteRenderer>().flipX = isFlipped;
+        spriteRenderer.flipX = isFlipped;
     }
 }

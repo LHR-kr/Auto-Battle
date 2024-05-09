@@ -19,7 +19,12 @@ public class KnightComponent : CharacterComponent
         
         for (int i = 0; i < AttackRangeX.Length; i++)
         {
-            int attackXPos = tile.xCoordinate + AttackRangeX[i];
+            int attackDirX;
+            if(spriteRenderer.flipX)
+                attackDirX = -AttackRangeX[i];
+            else
+                attackDirX = AttackRangeX[i];
+            int attackXPos = tile.xCoordinate + attackDirX;
             int attackYPos = tile.yCoordinate + AttackRangeY[i];
 
             // 공격 범위 체크

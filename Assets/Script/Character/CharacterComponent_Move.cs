@@ -57,8 +57,8 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
 
         }
 
-        if(moveDirX<0) FlipSpriteX(true);
-        else FlipSpriteX(false);
+        if(moveDirX<0 && !spriteRenderer.flipX) FlipSpriteX(true);
+        else if(moveDirX > 0 && spriteRenderer.flipX) FlipSpriteX(false);
 
         int targetTileX = tileUnderCharacter.xCoordinate + moveDirX;
         int targetTileY = tileUnderCharacter.yCoordinate + moveDirY;
@@ -71,7 +71,7 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
     
     private IEnumerator MoveCoroutine(Vector3 moveTargetPos)
     {
-        float moveTime = 0.4f;
+        float moveTime = 0.35f;
         float time = 0.0f;
         animator.SetBool("Move", true);
 
