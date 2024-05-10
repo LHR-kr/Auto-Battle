@@ -65,8 +65,8 @@ public class ArcherComponent : CharacterComponent
                 if(newX < 0 || newX >=TileManager.Instance.Col
                    || newY < 0 || newY >= TileManager.Instance.Row ) 
                     continue;
-                if(newX < tileUnderCharacter.xCoordinate -AttackRadius || newX > tileUnderCharacter.xCoordinate + AttackRadius 
-                    || newY < tileUnderCharacter.yCoordinate-AttackRadius || newY > tileUnderCharacter.yCoordinate +AttackRadius)
+                // 맨해튼 거리로 판별
+                if (Mathf.Abs(newX - tileUnderCharacter.xCoordinate) + Mathf.Abs(newY - tileUnderCharacter.yCoordinate) > AttackRadius)
                     continue;
                 if(isVisited[newY,newX]) 
                     continue;
