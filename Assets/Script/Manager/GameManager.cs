@@ -24,18 +24,15 @@ public class GameManager : MonoBehaviour
     private List< CharacterComponent> blueTeamCharacter;
     private static GameManager instance = null;
 
-    public delegate void GameStartDel();
-    public delegate void GameTickDel();
-    public delegate void GameTickEndDel();
-    public delegate void GameEndDel();
-    public delegate void GameRestartDel();
 
-    
-    public static event GameStartDel SendGameStartEvent;
-    public static event GameTickDel SendGameTickEvent;
-    public static event GameTickEndDel SendGameTickEndEvent;
-    public static event GameEndDel SendGameEndEvent;
-    public static event GameRestartDel SendGameRestartEvent;
+
+    // GameManager 오브젝트가 생성되지 않았는데도 다른 오브젝트의 OnEnable 함수에서 함수를 바인딩하여 NullException이 생기는 오류가 생긴다.
+    // 이것을 해결하기 위하여 Static으로 선언한다.
+    public static event Action SendGameStartEvent;
+    public static event Action SendGameTickEvent;
+    public static event Action SendGameTickEndEvent;
+    public static event Action SendGameEndEvent;
+    public static event Action SendGameRestartEvent;
 
     private Coroutine GameTimer;
 
@@ -138,13 +135,13 @@ public class GameManager : MonoBehaviour
         remainingTime -= tickDelayTime;
         while (remainingTime >= 0)
         {
+
             SendGameTickEvent();
             yield return TickAtcDelay;
             SendGameTickEndEvent();
             yield return TickAfterActDelay;
             remainingTime -= tickDelayTime;
-
-
+            
             bool isRedTeamAllDied = true;
             foreach (CharacterComponent character in redTeamCharacter)
             {
@@ -161,8 +158,6 @@ public class GameManager : MonoBehaviour
                 StopCoroutine(GameTimer);
                 EndGame();
             }
-            
-            
         }
 
 
