@@ -138,15 +138,15 @@ public class GameManager : MonoBehaviour
         remainingTime -= tickDelayTime;
         while (remainingTime >= 0)
         {
-            if (!CheckGameEnd())
+            if (!GetIsGameEnd())
                 SendGameTickEvent();
             yield return TickAtcDelay;
-            if(!CheckGameEnd())
+            if(!GetIsGameEnd())
                 SendGameTickEndEvent();
             yield return TickAfterActDelay;
             remainingTime -= tickDelayTime;
             
-           if(CheckGameEnd())
+           if(GetIsGameEnd())
             {
                 StopCoroutine(GameTimer);
                 EndGame();
@@ -180,7 +180,7 @@ public class GameManager : MonoBehaviour
            return ETEAM.None;
     }
 
-    private bool CheckGameEnd()
+    private bool GetIsGameEnd()
     {
         bool isRedTeamAllDied = true;
         foreach (CharacterComponent character in redTeamCharacter)
