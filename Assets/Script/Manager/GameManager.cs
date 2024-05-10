@@ -26,8 +26,8 @@ public class GameManager : MonoBehaviour
 
 
 
-    // GameManager ¿ÀºêÁ§Æ®°¡ »ı¼ºµÇÁö ¾Ê¾Ò´Âµ¥µµ ´Ù¸¥ ¿ÀºêÁ§Æ®ÀÇ OnEnable ÇÔ¼ö¿¡¼­ ÇÔ¼ö¸¦ ¹ÙÀÎµùÇÏ¿© NullExceptionÀÌ »ı±â´Â ¿À·ù°¡ »ı±ä´Ù.
-    // ÀÌ°ÍÀ» ÇØ°áÇÏ±â À§ÇÏ¿© StaticÀ¸·Î ¼±¾ğÇÑ´Ù.
+    // GameManager ì˜¤ë¸Œì íŠ¸ê°€ ìƒì„±ë˜ì§€ ì•Šì•˜ëŠ”ë°ë„ ë‹¤ë¥¸ ì˜¤ë¸Œì íŠ¸ì˜ OnEnable í•¨ìˆ˜ì—ì„œ í•¨ìˆ˜ë¥¼ ë°”ì¸ë”©í•˜ì—¬ NullExceptionì´ ìƒê¸°ëŠ” ì˜¤ë¥˜ê°€ ìƒê¸´ë‹¤.
+    // ì´ê²ƒì„ í•´ê²°í•˜ê¸° ìœ„í•˜ì—¬ Staticìœ¼ë¡œ ì„ ì–¸í•œë‹¤.
     public static event Action SendGameStartEvent;
     public static event Action SendGameTickEvent;
     public static event Action SendGameTickEndEvent;
@@ -81,7 +81,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         characters = FindObjectsOfType<CharacterComponent>();
-        
+        Array.Sort(characters, (a, b) =>
+        {
+            return a.transform.GetSiblingIndex().CompareTo(b.transform.GetSiblingIndex());
+        });
         redTeamCharacter = new();
         blueTeamCharacter = new();
         

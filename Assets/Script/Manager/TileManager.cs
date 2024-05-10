@@ -31,7 +31,18 @@ public class TileManager : MonoBehaviour, IGameStartEventListener
 
         GameManager.SendGameStartEvent += HandleGameStartEvent;
         TileComponent[] arrTiles = GetComponentsInChildren<TileComponent>();
-        Array.Sort(arrTiles);
+        //pos 값에 따라 정렬. 
+        Array.Sort(arrTiles, (a, b) =>
+        {
+            if (a.transform.position.y > b.transform.position.y)
+                return -1;
+            else if (a.transform.position.y == b.transform.position.y
+                     && a.transform.position.x < b.transform.position.x)
+                return -1;
+            else
+                return 1;
+        });
+
 
         for (int r = 0; r < row; r++)
         {
