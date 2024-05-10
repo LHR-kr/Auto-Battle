@@ -135,25 +135,15 @@ public class GameManager : MonoBehaviour
         remainingTime -= tickDelayTime;
         while (remainingTime >= 0)
         {
-
-            SendGameTickEvent();
+            if (!CheckGameEnd())
+                SendGameTickEvent();
             yield return TickAtcDelay;
-            SendGameTickEndEvent();
+            if(!CheckGameEnd())
+                SendGameTickEndEvent();
             yield return TickAfterActDelay;
             remainingTime -= tickDelayTime;
             
-            bool isRedTeamAllDied = true;
-            foreach (CharacterComponent character in redTeamCharacter)
-            {
-                isRedTeamAllDied = isRedTeamAllDied && !character.isActiveAndEnabled;
-            }
-            bool isBlueTeamAllDied = true;
-            foreach (CharacterComponent character in blueTeamCharacter)
-            {
-                isBlueTeamAllDied = isBlueTeamAllDied && !character.isActiveAndEnabled;
-            }
-
-            if (isRedTeamAllDied || isBlueTeamAllDied)
+           if(CheckGameEnd())
             {
                 StopCoroutine(GameTimer);
                 EndGame();
@@ -185,5 +175,21 @@ public class GameManager : MonoBehaviour
            return ETEAM.Red;
         else
            return ETEAM.None;
+    }
+
+    private bool CheckGameEnd()
+    {
+        bool isRedTeamAllDied = true;
+        foreach (CharacterComponent character in redTeamCharacter)
+        {
+            isRedTeamAllDied = isRedTeamAllDied && !character.isActiveAndEnabled;
+        }
+        bool isBlueTeamAllDied = true;
+        foreach (CharacterComponent character in blueTeamCharacter)
+        {
+            isBlueTeamAllDied = isBlueTeamAllDied && !character.isActiveAndEnabled;
+        }
+
+        return isRedTeamAllDied || isBlueTeamAllDied;
     }
 }
