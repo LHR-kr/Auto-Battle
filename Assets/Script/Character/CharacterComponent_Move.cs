@@ -15,6 +15,7 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
         foreach (CharacterComponent character in GameManager.Instance.Characters)
         {
             if(Team == character.Team) continue;
+            if (!character.isActiveAndEnabled) continue;
             if (movetarget== null)
             {
                 movetarget = character;
