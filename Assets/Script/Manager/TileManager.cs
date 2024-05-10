@@ -16,7 +16,6 @@ public class TileManager : MonoBehaviour, IGameStartEventListener
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
