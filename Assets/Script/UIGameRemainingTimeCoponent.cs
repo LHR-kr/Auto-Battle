@@ -18,6 +18,7 @@ public class UIGameRemainingTimeCoponent : MonoBehaviour, IGameTickEventListener
     private void Start()
     {
         GameManager.SendGameTickEvent += HandleGameTickEvent;
+        RemainingTimeText.SetText(GameManager.Instance.RemainingTime.ToString());
     }
 
     public void HandleGameTickEvent()
