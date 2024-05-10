@@ -18,12 +18,15 @@ public class UIGameEndTextComponent : MonoBehaviour
         switch (winnerTeam)
         {
             case ETEAM.Red:
+                textUI.color = Color.red;
                 text += "Red Team Win!";
                 break;
             case ETEAM.Blue:
+                textUI.color = Color.blue;
                 text += "Blue Team Win!";
                 break;
             case ETEAM.None:
+                textUI.color = Color.white;
                 text += "Draw!";
                 break;
             default:
