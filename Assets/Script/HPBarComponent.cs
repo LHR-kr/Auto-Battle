@@ -17,9 +17,6 @@ public class HPBarComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (character)
-        {
-            image.fillAmount = (character.HP / character.MaxHP);
-        }
+        image.fillAmount = (character.HP / character.MaxHP);
     }
 }

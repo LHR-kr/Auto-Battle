@@ -46,7 +46,7 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
                 continue;
             if(TileManager.Instance.Tiles[newY,newX].GetCharacterOnTile()) 
                 continue;
-            if (!TileManager.Instance.Tiles[newY, newX].isValidTile)
+            if (!TileManager.Instance.Tiles[newY, newX].isReservedByCharaterMove)
                 continue;
             float newDistance = (tileUnderMoveTarget.transform.position - TileManager.Instance.Tiles[newY,newX].transform.position).sqrMagnitude;
             if (newDistance < distance)
@@ -65,8 +65,8 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
         int targetTileY = tileUnderCharacter.yCoordinate + moveDirY;
         
         Vector3 movePos = TileManager.Instance.Tiles[targetTileY, targetTileX].transform.position;
-        TileManager.Instance.Tiles[targetTileY, targetTileX].isValidTile = false;
-        TileManager.Instance.Tiles[tileUnderCharacter.yCoordinate, tileUnderCharacter.xCoordinate].isValidTile = true;
+        TileManager.Instance.Tiles[targetTileY, targetTileX].isReservedByCharaterMove = false;
+        TileManager.Instance.Tiles[tileUnderCharacter.yCoordinate, tileUnderCharacter.xCoordinate].isReservedByCharaterMove = true;
         StartCoroutine(MoveCoroutine(movePos));
     }
     
@@ -85,7 +85,7 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
             yield return null;
         }
         animator.SetBool("Move", false);
-        GetTileUnderCharacter().isValidTile = true;
+        GetTileUnderCharacter().isReservedByCharaterMove = true;
     }
 
 }

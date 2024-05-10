@@ -5,7 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-public class UIManager : MonoBehaviour, IGameStartEventListener, IGameTickEventListener, IGameEndEventListener, IGameRestartEventListener
+public class UIManager : MonoBehaviour, IGameStartEventListener, IGameEndEventListener, IGameRestartEventListener
 {
     private static UIManager instance = null;
     [SerializeField] private Button GameStartButton;
@@ -37,7 +37,6 @@ public class UIManager : MonoBehaviour, IGameStartEventListener, IGameTickEventL
     private void Start()
     {
         GameManager.SendGameStartEvent += HandleGameStartEvent;
-        GameManager.SendGameTickEvent += HandleGameTickEvent;
         GameManager.SendGameEndEvent += HandleGameEndEvent;
         GameManager.SendGameRestartEvent += HandleGameRestartEvent;
     }
@@ -50,31 +49,10 @@ public class UIManager : MonoBehaviour, IGameStartEventListener, IGameTickEventL
         RemainingTimeText.SetText(GameManager.Instance.RemainingTime.ToString());
     }
 
-    public void HandleGameTickEvent()
-    {
-        RemainingTimeText.SetText(GameManager.Instance.RemainingTime.ToString());
-    }
 
-    public void HandleGameEndEvent(ETEAM winner)
-    {
-        string text = "Game End!\n";
-        RemainingTimeText.gameObject.SetActive(false);
-
-        switch (winner)
-        {
-            case ETEAM.Red:
-                text += "Red Team Win!";
-                break;
-            case ETEAM.Blue:
-                text += "Blue Team Win!";
-                break;
-            case ETEAM.None:
-                text += "Draw!";
-                break;
-            default:
-                break;
-        }
-        GameEndText.SetText(text);
+    public void HandleGameEndEvent()
+    {;
+        RemainingTimeText.gameObject.SetActive(false);   
         GameEndUIObject.SetActive(true);
     }
 

@@ -75,7 +75,7 @@ public class TileManager : MonoBehaviour, IGameStartEventListener
     {
         foreach (TileComponent tile in tiles)
         {
-            tile.isValidTile = true;
+            tile.isReservedByCharaterMove = true;
         }
     }
 
