@@ -8,8 +8,8 @@ public class ArrowComponent : MonoBehaviour
 
     private GameObject owner;
     private float attackDamage;
-    [SerializeField] private float speed = 1000.0f;
-    private Rigidbody2D rigidbody; 
+    [SerializeField] private float speed = 10.0f;
+    private Rigidbody2D rigid2D; 
     
     public float AttackDamage
     {
@@ -33,13 +33,13 @@ public class ArrowComponent : MonoBehaviour
     private void Start()
     {
         StartCoroutine(DestroyGameObject());
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigid2D = GetComponent<Rigidbody2D>();
     }
 
   private void FixedUpdate()
     {
         Vector2 velocityVector = transform.TransformDirection(Vector3.right) * Time.fixedDeltaTime * speed;
-        rigidbody.MovePosition(rigidbody.position + velocityVector);
+        rigid2D.MovePosition(rigid2D.position + velocityVector);
     }
 
     void OnTriggerEnter2D(Collider2D other)

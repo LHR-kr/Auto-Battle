@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public delegate void GameStartDel();
     public delegate void GameTickDel();
     public delegate void GameTickEndDel();
-    public delegate void GameEndDel(ETEAM winner);
+    public delegate void GameEndDel();
     public delegate void GameRestartDel();
 
     
@@ -46,10 +46,18 @@ public class GameManager : MonoBehaviour
             return remainingTime;
         }
     }
-    
+
+    public CharacterComponent[] Characters
+    {
+        get
+        {
+            return characters;
+        }
+    }
+
     void Awake()
     {
-        if (null == instance)
+        if (instance == null)
         {
             
             instance = this;
@@ -62,13 +70,21 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public static GameManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                return null;
+            else
+                return instance;
+        }
+    }
+
     private void Start()
     {
         characters = FindObjectsOfType<CharacterComponent>();
-        Array.Sort(characters, (a, b) =>
-        {
-            return a.transform.GetSiblingIndex().CompareTo(b.transform.GetSiblingIndex());
-        });
+        
         redTeamCharacter = new();
         blueTeamCharacter = new();
         
@@ -81,16 +97,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static GameManager Instance
-    {
-        get
-        {
-            if (instance == null)
-                return null;
-            else 
-                return instance;
-        }
-    }
 
     public void StartGame()
     {
@@ -114,37 +120,29 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        bool isRedTeamAllDide = true;
-        foreach (CharacterComponent character in redTeamCharacter)
-        {
-            isRedTeamAllDide = isRedTeamAllDide && !character.isActiveAndEnabled;
-        }
-        bool isBlueTeamAllDide = true;
-        foreach (CharacterComponent character in blueTeamCharacter)
-        {
-            isBlueTeamAllDide = isBlueTeamAllDide && !character.isActiveAndEnabled;
-        }
-        
-        if(isRedTeamAllDide && !isBlueTeamAllDide)
-            SendGameEndEvent(ETEAM.Blue);
-        else if (!isRedTeamAllDide && isBlueTeamAllDide)
-            SendGameEndEvent(ETEAM.Red);
-        else
-            SendGameEndEvent(ETEAM.None);
+        SendGameEndEvent();
     }
     
 
     IEnumerator SetGameTimer()
     {
-        yield return new WaitForSeconds(1.0f);
-        remainingTime -= 1.0f;
+        float tickDelayTime = 1.0f;
+        float tickActTime = 0.7f;
+        float tickAfterActTime = tickDelayTime - tickActTime;
+
+        WaitForSeconds TickDelay = new(tickDelayTime);
+        WaitForSeconds TickAtcDelay = new(tickActTime);
+        WaitForSeconds TickAfterActDelay = new(tickAfterActTime);
+
+        yield return TickDelay;
+        remainingTime -= tickDelayTime;
         while (remainingTime >= 0)
         {
             SendGameTickEvent();
-            yield return new WaitForSeconds(0.7f);
+            yield return TickAtcDelay;
             SendGameTickEndEvent();
-            yield return new WaitForSeconds(0.3f);
-            remainingTime -= 1.0f;
+            yield return TickAfterActDelay;
+            remainingTime -= tickDelayTime;
 
 
             bool isRedTeamAllDied = true;
@@ -166,19 +164,31 @@ public class GameManager : MonoBehaviour
             
             
         }
-        
-        
-        yield return new WaitForSeconds(1.0f);
+
+
+        yield return TickDelay;
         EndGame();
         
     }
-
-    public CharacterComponent[] Characters
-    {
-        get
-        {
-            return characters;
-        }
-    }
     
+    public ETEAM GetWinnerTeam()
+    {
+        bool isRedTeamAllDied = true;
+        foreach (CharacterComponent character in redTeamCharacter)
+        {
+           isRedTeamAllDied = isRedTeamAllDied && !character.isActiveAndEnabled;
+        }
+        bool isBlueTeamAllDied = true;
+        foreach (CharacterComponent character in blueTeamCharacter)
+        {
+           isBlueTeamAllDied = isBlueTeamAllDied && !character.isActiveAndEnabled;
+        }
+
+        if (isRedTeamAllDied && !isBlueTeamAllDied)
+           return ETEAM.Blue;
+        else if (!isRedTeamAllDied && isBlueTeamAllDied)
+           return ETEAM.Red;
+        else
+           return ETEAM.None;
+    }
 }

@@ -35,7 +35,7 @@ public class DragableComponent : MonoBehaviour, IGameStartEventListener,IGameRes
         Vector3 rayStartPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
         // 마우스 클릭 뗐을 때, 마우스 커서 아래에 자기 자신이 아닌 다른 캐릭터가 있다면 드래그 드랍 안 되도록 한다.
-        RaycastHit2D[] hitCharacter = Physics2D.RaycastAll(rayStartPos, transform.forward, 20.0f, LayerMask.GetMask("Character"));
+        RaycastHit2D[] hitCharacter = Physics2D.RaycastAll(rayStartPos, transform.forward, Mathf.Infinity, LayerMask.GetMask("Character"));
         foreach(RaycastHit2D hit in hitCharacter)
         {
             if (hit.collider.gameObject != this.gameObject)
