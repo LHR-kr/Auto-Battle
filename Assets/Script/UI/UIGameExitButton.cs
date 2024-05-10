@@ -1,32 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIGameExitButton : MonoBehaviour
 {
-    public void HandleGameStartEvent()
+    [SerializeField] private GameObject GameExitUIObject;
+
+    public void OnExitButtonClick()
     {
-        hp = maxHP;
-    }
-    public void HandleGameTickEvent()
-    {
-        Act();
+        GameExitUIObject.SetActive(true);
     }
 
-    public void HandleGameRestartEvent()
+    public void OnClickYes()
     {
-        hp = maxHP;
-        transform.position = startPos;
-        if(team== ETEAM.Red)
-            FlipSpriteX(false);
-        else if(team == ETEAM.Blue)
-            FlipSpriteX(true);
-            
+        Application.Quit();
     }
-
-    public void HandleGameTickEndEvent()
+    public void OnClickNo()
     {
-        if(hp<= 0)
-            this.gameObject.SetActive(false);
+        GameExitUIObject.SetActive(false);
     }
 }
