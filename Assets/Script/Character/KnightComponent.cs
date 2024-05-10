@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class KnightComponent : CharacterComponent
 {
-    // 12시 방향부터 시계방향으로
+    // 12시 방향부터 시계방향으로 탐색
     private int[] AttackRangeX = { 0, 1, 1, 1, 0, -1, -1, -1 };
     private int[] AttackRangeY = { -1, -1, 0, 1, 1, 1, 0, -1 };
 
@@ -19,6 +19,8 @@ public class KnightComponent : CharacterComponent
         
         for (int i = 0; i < AttackRangeX.Length; i++)
         {
+            //스프라이트의 방향에 따라 탐색 방향을 보정한다.
+            //항상 캐릭터의 앞쪽부터 공격대상을 탐색한다.
             int attackDirX;
             if(spriteRenderer.flipX)
                 attackDirX = -AttackRangeX[i];

@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class ArcherComponent : CharacterComponent
 {
-    private int[] attackRangeX = { 0, 0, 1, -1 };
-    private int[] attackRangeY = { 1, -1, 0, 0 };
+    private int[] attackSearchX = { 0, 0, 1, -1 };
+    private int[] attackSearchY = { 1, -1, 0, 0 };
 
     [SerializeField]private GameObject arrowPrefab;
     private int AttackRadius = 3;
@@ -42,22 +42,26 @@ public class ArcherComponent : CharacterComponent
             int nowY = nowNode.y;
 
             CharacterComponent character = TileManager.Instance.Tiles[nowY, nowX].GetCharacterOnTile();
+            //공격 대상 찾으면 탐색 종료
             if (character && team != character.Team)
             {
                 targetCharacters.Add(character);
                 return targetCharacters;
             }
             
-            for (int i = 0; i < attackRangeX.Length; i++)
+            for (int i = 0; i < attackSearchX.Length; i++)
             {
                 int attackDirX;
-                if(spriteRenderer.flipX)
-                    attackDirX = -attackRangeX[i];
+                //스프라이트의 방향에 따라 탐색 방향을 보정한다.
+                //항상 캐릭터의 앞쪽부터 공격대상을 탐색한다.
+                if (spriteRenderer.flipX)
+                    attackDirX = -attackSearchX[i];
                 else
-                    attackDirX = attackRangeX[i];
+                    attackDirX = attackSearchX[i];
                 int newX = nowX + attackDirX;
-                int newY = nowY + attackRangeY[i];
+                int newY = nowY + attackSearchY[i];
                 
+                //탐색 유효성 검사
                 if(newX < 0 || newX >=TileManager.Instance.Col
                    || newY < 0 || newY >= TileManager.Instance.Row ) 
                     continue;

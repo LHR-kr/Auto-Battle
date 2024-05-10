@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WarriorComponent : CharacterComponent
 {
-    // 12시 방향부터 시계방향으로
+    // 12시 방향부터 시계방향으로 탐색
     private int[] AttackRangeX = { 0, 1, 1, 1, 0, -1, -1, -1 };
     private int[] AttackRangeY = { -1, -1, 0, 1, 1, 1, 0, -1 };
     
