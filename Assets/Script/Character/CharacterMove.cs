@@ -12,48 +12,17 @@ public class CharacterMove : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
-    public void Move(TileComponent tileUnderCharacter, TileComponent tileUnderMoveTarget)
+    public void Move(TileComponent tileUnderCharacter, TileComponent tileUnderTarget)
     {
-        //게임 보드가 가로로 더 넓으니, 가로 방향으로 우선 이동할 수 있도록 순서 배치
-        int[] moveX = { -1, 1, 0, 0 };
-        int[] moveY = { 0, 0, 1, -1 };
+
+
+        TileComponent nextTile = FindTileToMove(tileUnderCharacter, tileUnderTarget);
+        if(nextTile.transform.position.x - transform.position.x <0 && !_spriteRenderer.flipX) _spriteRenderer.flipX  = true;
+        else if(nextTile.transform.position.x - transform.position.x > 0 && _spriteRenderer.flipX) _spriteRenderer.flipX = false;
         
-        // 이동 후, target과의 거리가 가장 작은 타일로 이동한다.
-        int moveDirX = 0;
-        int moveDirY = 0;
-        float distance = float.MaxValue;
-        for (int i = 0; i < moveX.Length; i++)
-        {
-            int newX = tileUnderCharacter.xCoordinate + moveX[i];
-            int newY = tileUnderCharacter.yCoordinate + moveY[i];
-            
-            // check is valid move
-            if(newX < 0 || newX >= TileManager.Instance.Col ||
-               newY < 0 || newY >= TileManager.Instance.Row)
-                continue;
-            if(TileManager.Instance.Tiles[newY,newX].GetCharacterOnTile()) 
-                continue;
-            if (!TileManager.Instance.Tiles[newY, newX].isReservedByCharaterMove)
-                continue;
-            float newDistance = (tileUnderMoveTarget.transform.position - TileManager.Instance.Tiles[newY,newX].transform.position).sqrMagnitude;
-            if (newDistance < distance)
-            {
-                distance = newDistance;
-                moveDirX = moveX[i];
-                moveDirY = moveY[i];
-            }
-
-        }
-
-        if(moveDirX<0 && !_spriteRenderer.flipX) _spriteRenderer.flipX  = true;
-        else if(moveDirX > 0 && _spriteRenderer.flipX) _spriteRenderer.flipX = false;
-
-        int targetTileX = tileUnderCharacter.xCoordinate + moveDirX;
-        int targetTileY = tileUnderCharacter.yCoordinate + moveDirY;
-        
-        TileManager.Instance.Tiles[targetTileY, targetTileX].isReservedByCharaterMove = false;
-        TileManager.Instance.Tiles[tileUnderCharacter.yCoordinate, tileUnderCharacter.xCoordinate].isReservedByCharaterMove = true;
-        StartCoroutine(MoveCoroutine(TileManager.Instance.Tiles[targetTileY, targetTileX]));
+        nextTile.isReservedByCharaterMove = false;
+        tileUnderCharacter.isReservedByCharaterMove = true;
+        StartCoroutine(MoveCoroutine(nextTile));
     }
     
     private IEnumerator MoveCoroutine(TileComponent moveTargetTile)
@@ -75,4 +44,46 @@ public class CharacterMove : MonoBehaviour
         moveTargetTile.isReservedByCharaterMove = true;
     }
 
+    private bool IsVaildMove(int newX, int newY)
+    {
+        if(newX < 0 || newX >= TileManager.Instance.Col ||
+           newY < 0 || newY >= TileManager.Instance.Row)
+            return false;
+        if(TileManager.Instance.Tiles[newY,newX].GetCharacterOnTile()) 
+            return false;
+        if (!TileManager.Instance.Tiles[newY, newX].isReservedByCharaterMove)
+            return false;
+        return true;
+    }
+
+    private TileComponent FindTileToMove(TileComponent tileUnderCharacter, TileComponent tileUnderTarget)
+    {
+        int[] moveX = { -1, 1, 0, 0 };
+        int[] moveY = { 0, 0, 1, -1 };
+        
+        // target과의 거리가 가장 작은 타일로 이동한다.
+        int moveDirX = 0;
+        int moveDirY = 0;
+        float distance = float.MaxValue;
+        for (int i = 0; i < moveX.Length; i++)
+        {
+            int newX = tileUnderCharacter.xCoordinate + moveX[i];
+            int newY = tileUnderCharacter.yCoordinate + moveY[i];
+            
+            // check is valid move
+            if(!IsVaildMove(newX,newY)) continue;
+            float newDistance = (tileUnderTarget.transform.position - TileManager.Instance.Tiles[newY,newX].transform.position).sqrMagnitude;
+            if (newDistance < distance)
+            {
+                distance = newDistance;
+                moveDirX = moveX[i];
+                moveDirY = moveY[i];
+            }
+
+        }
+        
+        int targetTileX = tileUnderCharacter.xCoordinate + moveDirX;
+        int targetTileY = tileUnderCharacter.yCoordinate + moveDirY;
+        return TileManager.Instance.Tiles[targetTileY, targetTileX];
+    }
 }
