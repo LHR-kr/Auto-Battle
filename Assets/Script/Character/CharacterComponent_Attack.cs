@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEventListener, IGameTickEventListener, IGameRestartEventListener, IGameTickEndEventListener
+public abstract partial class CharacterComponent : MonoBehaviour,  IGameTickEventListener, IGameRestartEventListener
 {
     [SerializeField] protected float attackDamage;
     
@@ -17,7 +17,7 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
             else
                 FlipSpriteX(false);
             animator.SetTrigger("Attack");
-            character.TakeDamage(attackDamage);
+            character.hpComponent.TakeDamage(attackDamage);
         }
     }
 

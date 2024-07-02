@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: -5468985672061950950}
   - component: {fileID: 4865269156039780141}
   - component: {fileID: 757493160856442049}
+  - component: {fileID: 6856980595076086885}
+  - component: {fileID: 6302178325739813857}
   m_Layer: 7
   m_Name: Archer
   m_TagString: Untagged
@@ -159,7 +161,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
-  maxHP: 30
   attackDamage: 15
   arrowPrefab: {fileID: 2182312912438001032, guid: 91f82f9ca6da0fc42990c23034a587bd, type: 3}
 --- !u!95 &757493160856442049
@@ -183,6 +184,31 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6856980595076086885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467076799058356814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2a1b81265c66b48bcb81f92b935d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6302178325739813857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467076799058356814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5c170a5e6e96d4f97473391109da13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 40
 --- !u!1001 &4801437775871593388
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,34 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEventListener, IGameTickEventListener, IGameRestartEventListener, IGameTickEndEventListener
+public class CharacterMove : MonoBehaviour
 {
-    private void Move()
+    private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
+    void Start()
+    {
+        _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+    
+    public void Move(TileComponent tileUnderCharacter, TileComponent tileUnderMoveTarget)
     {
         //게임 보드가 가로로 더 넓으니, 가로 방향으로 우선 이동할 수 있도록 순서 배치
         int[] moveX = { -1, 1, 0, 0 };
         int[] moveY = { 0, 0, 1, -1 };
-        
-        //가장 가까운 적 찾는다.
-        CharacterComponent movetarget = null;
-        foreach (CharacterComponent character in GameManager.Instance.Characters)
-        {
-            if(Team == character.Team) continue;
-            if (!character.isActiveAndEnabled) continue;
-            if (movetarget== null)
-            {
-                movetarget = character;
-                continue;
-            }
-
-            if ((transform.position - character.transform.position).sqrMagnitude <
-                (transform.position - movetarget.transform.position).sqrMagnitude)
-                movetarget = character;
-        }
-
-        if (movetarget == null) return;
-        TileComponent tileUnderCharacter = GetTileUnderCharacter();
-        TileComponent tileUnderMoveTarget = movetarget.GetTileUnderCharacter();
         
         // 이동 후, target과의 거리가 가장 작은 타일로 이동한다.
         int moveDirX = 0;
@@ -58,23 +45,23 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
 
         }
 
-        if(moveDirX<0 && !spriteRenderer.flipX) FlipSpriteX(true);
-        else if(moveDirX > 0 && spriteRenderer.flipX) FlipSpriteX(false);
+        if(moveDirX<0 && !_spriteRenderer.flipX) _spriteRenderer.flipX  = true;
+        else if(moveDirX > 0 && _spriteRenderer.flipX) _spriteRenderer.flipX = false;
 
         int targetTileX = tileUnderCharacter.xCoordinate + moveDirX;
         int targetTileY = tileUnderCharacter.yCoordinate + moveDirY;
         
-        Vector3 movePos = TileManager.Instance.Tiles[targetTileY, targetTileX].transform.position;
         TileManager.Instance.Tiles[targetTileY, targetTileX].isReservedByCharaterMove = false;
         TileManager.Instance.Tiles[tileUnderCharacter.yCoordinate, tileUnderCharacter.xCoordinate].isReservedByCharaterMove = true;
-        StartCoroutine(MoveCoroutine(movePos));
+        StartCoroutine(MoveCoroutine(TileManager.Instance.Tiles[targetTileY, targetTileX]));
     }
     
-    private IEnumerator MoveCoroutine(Vector3 moveTargetPos)
+    private IEnumerator MoveCoroutine(TileComponent moveTargetTile)
     {
+        Vector3 moveTargetPos = moveTargetTile.transform.position;
         float moveTime = 0.35f;
         float time = 0.0f;
-        animator.SetBool("Move", true);
+        _animator.SetBool("Move", true);
 
         float deltaDistance = (moveTargetPos - transform.position).magnitude * Time.fixedDeltaTime / moveTime;
         while (time < moveTime)
@@ -84,8 +71,8 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
 
             yield return null;
         }
-        animator.SetBool("Move", false);
-        GetTileUnderCharacter().isReservedByCharaterMove = true;
+        _animator.SetBool("Move", false);
+        moveTargetTile.isReservedByCharaterMove = true;
     }
 
 }

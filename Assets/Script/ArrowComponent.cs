@@ -52,7 +52,7 @@ public class ArrowComponent : MonoBehaviour
             return;
         if (hitCharacter.Team == owner.GetComponent<CharacterComponent>().Team)
             return;
-        hitCharacter.TakeDamage(attackDamage);
+        hitCharacter.hpComponent.TakeDamage(attackDamage);
         Destroy(this.gameObject);
     }
 

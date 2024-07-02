@@ -5,31 +5,24 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
-public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEventListener, IGameTickEventListener, IGameRestartEventListener, IGameTickEndEventListener
+public abstract partial class CharacterComponent : MonoBehaviour, IGameTickEventListener, IGameRestartEventListener
 {
     private Vector3 startPos;
-    protected float hp;
+
     
     protected SpriteRenderer spriteRenderer;
     [SerializeField] protected ETEAM team; 
-    [SerializeField] protected float maxHP;
     protected Animator animator;
+    private CharacterMove characterMove;
+    private HPComponent _hpComponent;
 
-    public float HP
+    public HPComponent hpComponent
     {
-        get
-        {
-            return hp;
-        }
+         get{
+             return _hpComponent;
+         }
     }
-
-    public float MaxHP
-    {
-        get
-        {
-            return maxHP;
-        }
-    }
+    
     
     public ETEAM Team
     {
@@ -43,24 +36,22 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
     
     private void Start()
     {
-        GameManager.SendGameStartEvent += HandleGameStartEvent;
         GameManager.SendGameRestartEvent += HandleGameRestartEvent;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        hp = maxHP;
+        characterMove = GetComponent<CharacterMove>();
+        _hpComponent = GetComponent<HPComponent>();
         startPos = transform.position;
     }
 
     private void OnEnable()
     {
         GameManager.SendGameTickEvent += HandleGameTickEvent;
-        GameManager.SendGameTickEndEvent += HandleGameTickEndEvent;
     }
 
     private void OnDisable()
     {
         GameManager.SendGameTickEvent -= HandleGameTickEvent;
-        GameManager.SendGameTickEndEvent -= HandleGameTickEndEvent;
     }
 
     public void Act()
@@ -69,17 +60,17 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
         if(attackTargets.Count > 0)
             Attack(attackTargets);
         else
-            Move();
-        
+        {
+            TileComponent moveTileTarget = GetMoveTargetTile();
+            TileComponent tileUnderCharacter = GetTileUnderCharacter();
+            if(moveTileTarget && tileUnderCharacter)
+                characterMove.Move(tileUnderCharacter, moveTileTarget);
+        }
     }
 
    
 
-    public void TakeDamage(float Damage)
-    {
-        hp = Mathf.Max(0, hp - Damage);
-    }
-
+    
     protected TileComponent GetTileUnderCharacter()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.forward, Mathf.Infinity, LayerMask.GetMask("Tile"));
@@ -89,5 +80,27 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameStartEven
     protected void FlipSpriteX(bool isFlipped)
     {
         spriteRenderer.flipX = isFlipped;
+    }
+
+    TileComponent GetMoveTargetTile()
+    {
+        //가장 가까운 적 찾는다.
+        CharacterComponent movetarget = null;
+        foreach (CharacterComponent character in GameManager.Instance.Characters)
+        {
+            if(Team == character.Team) continue;
+            if (!character.isActiveAndEnabled) continue;
+            if (movetarget== null)
+            {
+                movetarget = character;
+                continue;
+            }
+
+            if ((transform.position - character.transform.position).sqrMagnitude <
+                (transform.position - movetarget.transform.position).sqrMagnitude)
+                movetarget = character;
+        }
+
+        return movetarget.GetTileUnderCharacter();
     }
 }
