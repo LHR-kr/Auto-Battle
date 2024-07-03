@@ -18,6 +18,5 @@ public partial class CharacterComponent : MonoBehaviour,  IGameTickEventListener
             spriteRenderer.flipX = false;
         else if (team == ETEAM.Blue)
             spriteRenderer.flipX = true;
-
     }
 }

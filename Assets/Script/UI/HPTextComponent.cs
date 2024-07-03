@@ -16,7 +16,7 @@ public class HPTextComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        string t = string.Format("{0}/{1}", character.hpComponent.HP, character.hpComponent.MaxHP);
+        string t = string.Format("{0}/{1}", character.HpComponent.HP, character.HpComponent.MaxHP);
         textUI.SetText(t);
     }
 }

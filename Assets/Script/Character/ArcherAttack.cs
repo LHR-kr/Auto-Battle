@@ -17,7 +17,7 @@ public class ArcherAttack : CharacterAttack
     {
         List<CharacterComponent> targetCharacters = new();
 
-        TileComponent tile = character.GetTileUnderCharacter();
+        TileComponent tile = TileManager.Instance.GetTileUnderCharacter(character);
         if (!tile) return targetCharacters;
 
         // 가까이 있는 캐릭터부터 공격하기 위해 bfs 사용
@@ -31,7 +31,7 @@ public class ArcherAttack : CharacterAttack
             }
         }
 
-        TileComponent tileUnderCharacter = character.GetTileUnderCharacter();
+        TileComponent tileUnderCharacter = TileManager.Instance.GetTileUnderCharacter(character);
         q.Enqueue(new TileNode(tileUnderCharacter.xCoordinate, tileUnderCharacter.yCoordinate));
         isVisited[tileUnderCharacter.yCoordinate, tileUnderCharacter.xCoordinate] = true;
 

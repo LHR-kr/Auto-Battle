@@ -14,7 +14,7 @@ public class KnightAttack : CharacterAttack
     {
         List<CharacterComponent> attackTargets = new();
         
-        TileComponent tile = character.GetTileUnderCharacter();
+        TileComponent tile = TileManager.Instance.GetTileUnderCharacter(character);
         if (!tile) return attackTargets;
         
         for (int i = 0; i < AttackRangeX.Length; i++)

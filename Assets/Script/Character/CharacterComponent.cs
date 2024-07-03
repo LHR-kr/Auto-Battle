@@ -12,12 +12,11 @@ public partial class CharacterComponent : MonoBehaviour, IGameTickEventListener,
     
     protected SpriteRenderer spriteRenderer;
     [SerializeField] protected ETEAM team; 
-    protected Animator animator;
-    private CharacterMove characterMove;
+    private CharacterMove _characterMove;
     private HPComponent _hpComponent;
-    private CharacterAttack characterAttack;
+    private CharacterAttack _characterAttack;
 
-    public HPComponent hpComponent
+    public HPComponent HpComponent
     {
          get{
              return _hpComponent;
@@ -38,10 +37,9 @@ public partial class CharacterComponent : MonoBehaviour, IGameTickEventListener,
     private void Start()
     {
         GameManager.SendGameRestartEvent += HandleGameRestartEvent;
-        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        characterMove = GetComponent<CharacterMove>();
-        characterAttack = GetComponent<CharacterAttack>();
+        _characterMove = GetComponent<CharacterMove>();
+        _characterAttack = GetComponent<CharacterAttack>();
         _hpComponent = GetComponent<HPComponent>();
         startPos = transform.position;
     }
@@ -58,26 +56,21 @@ public partial class CharacterComponent : MonoBehaviour, IGameTickEventListener,
 
     public void Act()
     {
-        List<CharacterComponent> attackTargets = characterAttack.GetAttackTarget();
+        List<CharacterComponent> attackTargets = _characterAttack.GetAttackTarget();
         if(attackTargets.Count > 0)
-            characterAttack.Attack(attackTargets);
+            _characterAttack.Attack(attackTargets);
         else
         {
             TileComponent moveTileTarget = GetMoveTargetTile();
-            TileComponent tileUnderCharacter = GetTileUnderCharacter();
+            TileComponent tileUnderCharacter = TileManager.Instance.GetTileUnderCharacter(this);
             if(moveTileTarget && tileUnderCharacter)
-                characterMove.Move(tileUnderCharacter, moveTileTarget);
+                _characterMove.Move(tileUnderCharacter, moveTileTarget);
         }
     }
 
    
 
     
-    public TileComponent GetTileUnderCharacter()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.forward, Mathf.Infinity, LayerMask.GetMask("Tile"));
-        return hit.collider.GetComponent<TileComponent>();
-    }
     
 
     TileComponent GetMoveTargetTile()
@@ -99,6 +92,6 @@ public partial class CharacterComponent : MonoBehaviour, IGameTickEventListener,
                 movetarget = character;
         }
 
-        return movetarget.GetTileUnderCharacter();
+        return TileManager.Instance.GetTileUnderCharacter(movetarget);
     }
 }

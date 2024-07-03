@@ -89,5 +89,10 @@ public class TileManager : MonoBehaviour, IGameStartEventListener
         }
     }
 
-
+    public TileComponent GetTileUnderCharacter(CharacterComponent character)
+    {
+        if (!character) return null;
+        RaycastHit2D hit = Physics2D.Raycast(character.transform.position, Vector3.forward, Mathf.Infinity, LayerMask.GetMask("Tile"));
+        return hit.collider.GetComponent<TileComponent>();
+    }
 }

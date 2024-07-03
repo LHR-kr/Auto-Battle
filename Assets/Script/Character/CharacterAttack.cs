@@ -30,7 +30,7 @@ public abstract class CharacterAttack : MonoBehaviour
             else
                 spriteRenderer.flipX = false;
             animator.SetTrigger("Attack");
-            enemyCharacter.hpComponent.TakeDamage(attackDamage);
+            enemyCharacter.HpComponent.TakeDamage(attackDamage);
         }
     }
 }
