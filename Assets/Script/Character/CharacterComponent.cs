@@ -61,37 +61,11 @@ public partial class CharacterComponent : MonoBehaviour, IGameTickEventListener,
             _characterAttack.Attack(attackTargets);
         else
         {
-            TileComponent moveTileTarget = GetMoveTargetTile();
+            TileComponent moveTileTarget = _characterMove.FindMoveTargetTile(this);
             TileComponent tileUnderCharacter = TileManager.Instance.GetTileUnderCharacter(this);
             if(moveTileTarget && tileUnderCharacter)
                 _characterMove.Move(tileUnderCharacter, moveTileTarget);
         }
     }
-
-   
-
     
-    
-
-    TileComponent GetMoveTargetTile()
-    {
-        //가장 가까운 적 찾는다.
-        CharacterComponent movetarget = null;
-        foreach (CharacterComponent character in GameManager.Instance.Characters)
-        {
-            if(Team == character.Team) continue;
-            if (!character.isActiveAndEnabled) continue;
-            if (movetarget== null)
-            {
-                movetarget = character;
-                continue;
-            }
-
-            if ((transform.position - character.transform.position).sqrMagnitude <
-                (transform.position - movetarget.transform.position).sqrMagnitude)
-                movetarget = character;
-        }
-
-        return TileManager.Instance.GetTileUnderCharacter(movetarget);
-    }
 }

@@ -12,10 +12,30 @@ public class CharacterMove : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
+   public TileComponent FindMoveTargetTile(CharacterComponent currentCharacter)
+    {
+        //가장 가까운 적이 있는 타일을 찾는다.
+        CharacterComponent movetarget = null;
+        foreach (CharacterComponent otherCharacter in GameManager.Instance.Characters)
+        {
+            if(currentCharacter.Team == otherCharacter.Team) continue;
+            if (!otherCharacter.isActiveAndEnabled) continue;
+            if (movetarget== null)
+            {
+                movetarget = otherCharacter;
+                continue;
+            }
+
+            if ((transform.position - otherCharacter.transform.position).sqrMagnitude <
+                (transform.position - movetarget.transform.position).sqrMagnitude)
+                movetarget = otherCharacter;
+        }
+
+        return TileManager.Instance.GetTileUnderCharacter(movetarget);
+    }
+    
     public void Move(TileComponent tileUnderCharacter, TileComponent tileUnderTarget)
     {
-
-
         TileComponent nextTile = FindTileToMove(tileUnderCharacter, tileUnderTarget);
         if(tileUnderTarget.transform.position.x - transform.position.x <0 ) _spriteRenderer.flipX  = true;
         else if(tileUnderTarget.transform.position.x - transform.position.x > 0) _spriteRenderer.flipX = false;
