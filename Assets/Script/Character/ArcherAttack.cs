@@ -13,11 +13,11 @@ public class ArcherAttack : CharacterAttack
     [SerializeField]private GameObject arrowPrefab;
     private int AttackRadius = 3;
    
-    public override List<CharacterComponent> GetAttackTarget()
+    public override List<CharacterComponent> GetAttackTarget(CharacterComponent onwerCharacter)
     {
         List<CharacterComponent> targetCharacters = new();
 
-        TileComponent tile = TileManager.Instance.GetTileUnderCharacter(character);
+        TileComponent tile = TileManager.Instance.GetTileUnderCharacter(onwerCharacter);
         if (!tile) return targetCharacters;
 
         // 가까이 있는 캐릭터부터 공격하기 위해 bfs 사용
@@ -31,7 +31,7 @@ public class ArcherAttack : CharacterAttack
             }
         }
 
-        TileComponent tileUnderCharacter = TileManager.Instance.GetTileUnderCharacter(character);
+        TileComponent tileUnderCharacter = TileManager.Instance.GetTileUnderCharacter(onwerCharacter);
         q.Enqueue(new TileNode(tileUnderCharacter.xCoordinate, tileUnderCharacter.yCoordinate));
         isVisited[tileUnderCharacter.yCoordinate, tileUnderCharacter.xCoordinate] = true;
 
@@ -43,7 +43,7 @@ public class ArcherAttack : CharacterAttack
 
             CharacterComponent otherCharacter = TileManager.Instance.Tiles[nowY, nowX].GetCharacterOnTile();
             //공격 대상 찾으면 탐색 종료
-            if (otherCharacter && character.Team != otherCharacter.Team)
+            if (otherCharacter && onwerCharacter.Team != otherCharacter.Team)
             {
                 targetCharacters.Add(otherCharacter);
                 return targetCharacters;

@@ -5,13 +5,11 @@ using UnityEngine;
 public abstract class CharacterAttack : MonoBehaviour
 {
     protected SpriteRenderer spriteRenderer;
-    protected CharacterComponent character;
     protected Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        character = GetComponent<CharacterComponent>();
         animator = GetComponent<Animator>();
     }
 
@@ -19,7 +17,7 @@ public abstract class CharacterAttack : MonoBehaviour
     
     [SerializeField] protected float attackDamage;
     
-    public abstract List<CharacterComponent> GetAttackTarget();
+    public abstract List<CharacterComponent> GetAttackTarget(CharacterComponent onwerCharacter);
     
     public virtual void Attack(List<CharacterComponent> attackTarget)
     {

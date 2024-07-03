@@ -56,7 +56,7 @@ public partial class CharacterComponent : MonoBehaviour, IGameTickEventListener,
 
     public void Act()
     {
-        List<CharacterComponent> attackTargets = _characterAttack.GetAttackTarget();
+        List<CharacterComponent> attackTargets = _characterAttack.GetAttackTarget(this);
         if(attackTargets.Count > 0)
             _characterAttack.Attack(attackTargets);
         else

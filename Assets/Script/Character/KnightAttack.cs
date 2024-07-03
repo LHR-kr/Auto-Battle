@@ -10,11 +10,11 @@ public class KnightAttack : CharacterAttack
     private int[] AttackRangeX = { 0, 1, 1, 1, 0, -1, -1, -1 };
     private int[] AttackRangeY = { -1, -1, 0, 1, 1, 1, 0, -1 };
 
-    public override List<CharacterComponent> GetAttackTarget()
+    public override List<CharacterComponent> GetAttackTarget(CharacterComponent onwerCharacter)
     {
         List<CharacterComponent> attackTargets = new();
         
-        TileComponent tile = TileManager.Instance.GetTileUnderCharacter(character);
+        TileComponent tile = TileManager.Instance.GetTileUnderCharacter(onwerCharacter);
         if (!tile) return attackTargets;
         
         for (int i = 0; i < AttackRangeX.Length; i++)
@@ -38,7 +38,7 @@ public class KnightAttack : CharacterAttack
             CharacterComponent otherCharacter = TileManager.Instance.Tiles[attackYPos, attackXPos].GetCharacterOnTile();
             if (!otherCharacter)
                 continue;
-            if (character.Team == otherCharacter.Team)
+            if (onwerCharacter.Team == otherCharacter.Team)
                 continue;
             
             attackTargets.Add(otherCharacter);

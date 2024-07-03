@@ -232,6 +232,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4240144495528247146, guid: d578338f74346394daaaa466fd92060d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4379835618082043081, guid: d578338f74346394daaaa466fd92060d, type: 3}
       propertyPath: m_Name
       value: Blue Warrior
