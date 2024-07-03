@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 3600625358089245476}
   - component: {fileID: 4240144495528247146}
   - component: {fileID: 2979657971858521771}
-  - component: {fileID: 6140544506403403377}
   - component: {fileID: -7390988093882877733}
   - component: {fileID: -6655494063719474766}
   - component: {fileID: -9113047034985471765}
+  - component: {fileID: 7962840030569698012}
+  - component: {fileID: 1069745915413514904}
   m_Layer: 7
   m_Name: Warrior
   m_TagString: Untagged
@@ -148,20 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3998f208a5ed51c4cbda18efe3fb77b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6140544506403403377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4379835618082043081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcb94e2053146724d816db078a2f6b50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 0
-  attackDamage: 8
 --- !u!95 &-7390988093882877733
 Animator:
   serializedVersion: 5
@@ -208,6 +195,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 70
+--- !u!114 &7962840030569698012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4379835618082043081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb94e2053146724d816db078a2f6b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 8
+--- !u!114 &1069745915413514904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4379835618082043081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55190446bf1b8194b989a969d4f06c55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
 --- !u!1001 &1490636284555774292
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 1763877635289588038}
   - component: {fileID: 7818372758986397776}
   - component: {fileID: -5468985672061950950}
-  - component: {fileID: 4865269156039780141}
   - component: {fileID: 757493160856442049}
   - component: {fileID: 6856980595076086885}
   - component: {fileID: 6302178325739813857}
+  - component: {fileID: 6264884023522114}
+  - component: {fileID: 6235364572659769961}
   m_Layer: 7
   m_Name: Archer
   m_TagString: Untagged
@@ -148,21 +149,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7, y: 0.7}
   m_EdgeRadius: 0
---- !u!114 &4865269156039780141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5467076799058356814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737265b3704418d41a40539eec3226f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 0
-  attackDamage: 15
-  arrowPrefab: {fileID: 2182312912438001032, guid: 91f82f9ca6da0fc42990c23034a587bd, type: 3}
 --- !u!95 &757493160856442049
 Animator:
   serializedVersion: 5
@@ -209,6 +195,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 40
+--- !u!114 &6264884023522114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467076799058356814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737265b3704418d41a40539eec3226f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 12
+  arrowPrefab: {fileID: 2182312912438001032, guid: 91f82f9ca6da0fc42990c23034a587bd, type: 3}
+--- !u!114 &6235364572659769961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467076799058356814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55190446bf1b8194b989a969d4f06c55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
 --- !u!1001 &4801437775871593388
 PrefabInstance:
   m_ObjectHideFlags: 0

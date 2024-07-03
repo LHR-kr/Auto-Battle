@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 
-public class ArcherComponent : CharacterComponent
+public class ArcherComponent : CharacterAttack
 {
     private int[] attackSearchX = { 0, 0, 1, -1 };
     private int[] attackSearchY = { 1, -1, 0, 0 };
@@ -13,11 +13,11 @@ public class ArcherComponent : CharacterComponent
     [SerializeField]private GameObject arrowPrefab;
     private int AttackRadius = 3;
    
-    protected override List<CharacterComponent> GetAttackTarget()
+    public override List<CharacterComponent> GetAttackTarget()
     {
         List<CharacterComponent> targetCharacters = new();
 
-        TileComponent tile = GetTileUnderCharacter();
+        TileComponent tile = character.GetTileUnderCharacter();
         if (!tile) return targetCharacters;
 
         // 가까이 있는 캐릭터부터 공격하기 위해 bfs 사용
@@ -31,7 +31,7 @@ public class ArcherComponent : CharacterComponent
             }
         }
 
-        TileComponent tileUnderCharacter = GetTileUnderCharacter();
+        TileComponent tileUnderCharacter = character.GetTileUnderCharacter();
         q.Enqueue(new TileNode(tileUnderCharacter.xCoordinate, tileUnderCharacter.yCoordinate));
         isVisited[tileUnderCharacter.yCoordinate, tileUnderCharacter.xCoordinate] = true;
 
@@ -41,11 +41,11 @@ public class ArcherComponent : CharacterComponent
             int nowX = nowNode.x;
             int nowY = nowNode.y;
 
-            CharacterComponent character = TileManager.Instance.Tiles[nowY, nowX].GetCharacterOnTile();
+            CharacterComponent otherCharacter = TileManager.Instance.Tiles[nowY, nowX].GetCharacterOnTile();
             //공격 대상 찾으면 탐색 종료
-            if (character && team != character.Team)
+            if (otherCharacter && character.Team != otherCharacter.Team)
             {
-                targetCharacters.Add(character);
+                targetCharacters.Add(otherCharacter);
                 return targetCharacters;
             }
             
@@ -80,18 +80,18 @@ public class ArcherComponent : CharacterComponent
         
     
 
-    protected override void Attack(List<CharacterComponent> attackTarget)
+    public override void Attack(List<CharacterComponent> attackTarget)
     {
-        CharacterComponent character = attackTarget[0];
-        if(character.transform.position.x < transform.position.x)
-            FlipSpriteX(true);
+        CharacterComponent enemyCharacter = attackTarget[0];
+        if(enemyCharacter.transform.position.x < transform.position.x)
+            spriteRenderer.flipX = true;
         else
-            FlipSpriteX(false);
+            spriteRenderer.flipX = false;
                 
         animator.SetTrigger("Attack");
         // 투사체 발사
 
-        Vector3 dir = character.transform.position - transform.position;
+        Vector3 dir = enemyCharacter.transform.position - transform.position;
         ArrowComponent arrow = Instantiate(arrowPrefab, transform.position,
             Quaternion.FromToRotation(Vector3.right, dir)).GetComponent<ArrowComponent>();
         arrow.AttackDamage = attackDamage;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract partial class CharacterComponent : MonoBehaviour,  IGameTickEventListener, IGameRestartEventListener
+public partial class CharacterComponent : MonoBehaviour,  IGameTickEventListener, IGameRestartEventListener
 {
     
     public void HandleGameTickEvent()
@@ -15,11 +15,9 @@ public abstract partial class CharacterComponent : MonoBehaviour,  IGameTickEven
         
         transform.position = startPos;
         if (team == ETEAM.Red)
-            FlipSpriteX(false);
+            spriteRenderer.flipX = false;
         else if (team == ETEAM.Blue)
-            FlipSpriteX(true);
+            spriteRenderer.flipX = true;
 
     }
-
-    
 }

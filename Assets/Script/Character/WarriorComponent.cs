@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WarriorComponent : CharacterComponent
+public class WarriorComponent : CharacterAttack
 {
     // 12시 방향부터 시계방향으로 탐색
     private int[] AttackRangeX = { 0, 1, 1, 1, 0, -1, -1, -1 };
     private int[] AttackRangeY = { -1, -1, 0, 1, 1, 1, 0, -1 };
     
     
-    protected override List<CharacterComponent> GetAttackTarget()
+    public override List<CharacterComponent> GetAttackTarget()
     {
         List<CharacterComponent> attackTargets = new();
         
-        TileComponent tile = GetTileUnderCharacter();
+        TileComponent tile = character.GetTileUnderCharacter();
         if (!tile) return attackTargets;
         
         for (int i = 0; i < AttackRangeX.Length; i++)
@@ -27,14 +27,13 @@ public class WarriorComponent : CharacterComponent
                 continue;
             
             // 공격 유효성 체크
-            CharacterComponent character = TileManager.Instance.Tiles[attackYPos,attackXPos].GetCharacterOnTile();
-            if(!character ) 
+            CharacterComponent otherCharacter = TileManager.Instance.Tiles[attackYPos,attackXPos].GetCharacterOnTile();
+            if(!otherCharacter) 
                 continue;
-            if (team == character.Team)
+            if (character.Team == otherCharacter.Team)
                 continue;
-
-
-            attackTargets.Add(character);
+            
+            attackTargets.Add(otherCharacter);
         }
         return attackTargets;
     }

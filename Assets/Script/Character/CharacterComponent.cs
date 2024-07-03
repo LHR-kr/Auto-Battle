@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
-public abstract partial class CharacterComponent : MonoBehaviour, IGameTickEventListener, IGameRestartEventListener
+public partial class CharacterComponent : MonoBehaviour, IGameTickEventListener, IGameRestartEventListener
 {
     private Vector3 startPos;
 
@@ -15,6 +15,7 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameTickEvent
     protected Animator animator;
     private CharacterMove characterMove;
     private HPComponent _hpComponent;
+    private CharacterAttack characterAttack;
 
     public HPComponent hpComponent
     {
@@ -40,6 +41,7 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameTickEvent
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         characterMove = GetComponent<CharacterMove>();
+        characterAttack = GetComponent<CharacterAttack>();
         _hpComponent = GetComponent<HPComponent>();
         startPos = transform.position;
     }
@@ -56,9 +58,9 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameTickEvent
 
     public void Act()
     {
-        List<CharacterComponent> attackTargets = GetAttackTarget();
+        List<CharacterComponent> attackTargets = characterAttack.GetAttackTarget();
         if(attackTargets.Count > 0)
-            Attack(attackTargets);
+            characterAttack.Attack(attackTargets);
         else
         {
             TileComponent moveTileTarget = GetMoveTargetTile();
@@ -71,16 +73,12 @@ public abstract partial class CharacterComponent : MonoBehaviour, IGameTickEvent
    
 
     
-    protected TileComponent GetTileUnderCharacter()
+    public TileComponent GetTileUnderCharacter()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.forward, Mathf.Infinity, LayerMask.GetMask("Tile"));
         return hit.collider.GetComponent<TileComponent>();
     }
-
-    protected void FlipSpriteX(bool isFlipped)
-    {
-        spriteRenderer.flipX = isFlipped;
-    }
+    
 
     TileComponent GetMoveTargetTile()
     {

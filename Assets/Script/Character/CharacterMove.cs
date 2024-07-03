@@ -17,8 +17,8 @@ public class CharacterMove : MonoBehaviour
 
 
         TileComponent nextTile = FindTileToMove(tileUnderCharacter, tileUnderTarget);
-        if(nextTile.transform.position.x - transform.position.x <0 && !_spriteRenderer.flipX) _spriteRenderer.flipX  = true;
-        else if(nextTile.transform.position.x - transform.position.x > 0 && _spriteRenderer.flipX) _spriteRenderer.flipX = false;
+        if(tileUnderTarget.transform.position.x - transform.position.x <0 ) _spriteRenderer.flipX  = true;
+        else if(tileUnderTarget.transform.position.x - transform.position.x > 0) _spriteRenderer.flipX = false;
         
         nextTile.isReservedByCharaterMove = false;
         tileUnderCharacter.isReservedByCharaterMove = true;
@@ -44,17 +44,7 @@ public class CharacterMove : MonoBehaviour
         moveTargetTile.isReservedByCharaterMove = true;
     }
 
-    private bool IsVaildMove(int newX, int newY)
-    {
-        if(newX < 0 || newX >= TileManager.Instance.Col ||
-           newY < 0 || newY >= TileManager.Instance.Row)
-            return false;
-        if(TileManager.Instance.Tiles[newY,newX].GetCharacterOnTile()) 
-            return false;
-        if (!TileManager.Instance.Tiles[newY, newX].isReservedByCharaterMove)
-            return false;
-        return true;
-    }
+   
 
     private TileComponent FindTileToMove(TileComponent tileUnderCharacter, TileComponent tileUnderTarget)
     {
@@ -86,4 +76,15 @@ public class CharacterMove : MonoBehaviour
         int targetTileY = tileUnderCharacter.yCoordinate + moveDirY;
         return TileManager.Instance.Tiles[targetTileY, targetTileX];
     }
+    private bool IsVaildMove(int newX, int newY)
+     {
+         if(newX < 0 || newX >= TileManager.Instance.Col ||
+            newY < 0 || newY >= TileManager.Instance.Row)
+             return false;
+         if(TileManager.Instance.Tiles[newY,newX].GetCharacterOnTile()) 
+             return false;
+         if (!TileManager.Instance.Tiles[newY, newX].isReservedByCharaterMove)
+             return false;
+         return true;
+     }
 }
