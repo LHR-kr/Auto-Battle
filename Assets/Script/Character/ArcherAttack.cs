@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 
-public class ArcherComponent : CharacterAttack
+public class ArcherAttack : CharacterAttack
 {
     private int[] attackSearchX = { 0, 0, 1, -1 };
     private int[] attackSearchY = { 1, -1, 0, 0 };
